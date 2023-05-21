@@ -62,13 +62,13 @@ export class Video3D_Sample extends Sample {
         }
 
 
-        this.video = await loadVideo("../../assets/video.webm");
-        //this.video = await loadVideo("../../assets/video9.mp4");
+        //this.video = await loadVideo("../../assets/video.webm");
+        this.video = await loadVideo("../../assets/_video9.mp4");
 
         const heightRatio = this.video.videoHeight / this.video.videoWidth;
-        console.log("SIZE ", renderer.width, renderer.height)
+        console.log("SIZE ", renderer.width, renderer.height, " :::: ", this.video.videoWidth, this.video.videoHeight)
         const headlessRenderer = new HeadlessGPURenderer(true);
-        await headlessRenderer.init(renderer.width, renderer.height)
+        await headlessRenderer.init(this.video.videoWidth, this.video.videoHeight)
         const textureSampler: TextureSampler = new TextureSampler();
         const video = new TexturedQuad(headlessRenderer, this.video, textureSampler);
         headlessRenderer.addPipeline(video);
@@ -111,7 +111,7 @@ export class Video3D_Sample extends Sample {
 
             var idx = (id % screen.x);
             var idy = floor(id / screen.x);
-            let px =  invRatio + (idx / screen.x) * ratio ;
+            let px = invRatio + (idx / screen.x) * ratio ;
             let py = (idy / screen.y) ;
             
             var col = textureSampleLevel(image,textureSampler,vec2(px  , py),0.0);
