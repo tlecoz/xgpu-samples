@@ -1,0 +1,8 @@
+{
+    "files": [
+        "Light_Sample.ts",
+        "Dragon.ts",
+        "Light.ts",
+        "LightPlugin.ts"
+    ]
+}

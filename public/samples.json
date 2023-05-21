@@ -1,0 +1,24 @@
+{
+    "basePath": "/src/samples/",
+    "samples": [
+        "HelloTriangle",
+        "IndexBuffer",
+        "ColorCube",
+        "TexturedCube",
+        "VideoCube",
+        "FractalCube",
+        "CubeMap",
+        "TwoCubes",
+        "InstanceCube",
+        "TonsOfCubes",
+        "MouseToy",
+        "MouseToy2",
+        "Light",
+        "Shadow",
+        "SoundSpectrum",
+        "ComputeShaderCanvas2D",
+        "ComputeTexture",
+        "Video3D",
+        "Ribbon"
+    ]
+}
