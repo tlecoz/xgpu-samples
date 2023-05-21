@@ -14,6 +14,7 @@ export class Sample {
     constructor(useCanvas2D: boolean = false) {
         this.useCanvas2D = useCanvas2D;
         XGPU.setPreferredCanvasFormat("bgra8unorm");
+        console.clear();
 
     }
 
@@ -22,9 +23,15 @@ export class Sample {
     protected renderer: GPURenderer;
 
     protected _started: boolean = false;
+
+
+    protected static canvas2d: HTMLCanvasElement;
+
     public init(canvas: HTMLCanvasElement, onReady?: (o: HTMLElement) => void) {
         if (this._started) return;
         this._started = true;
+
+
 
         if (Sample.current) Sample.current.destroy();
         XGPU.destroy();
@@ -32,6 +39,8 @@ export class Sample {
 
         let renderer: GPURenderer;
         if (!this.useCanvas2D) {
+            canvas.style.display = "flex";
+            if (Sample.canvas2d) Sample.canvas2d.style.display = "none";
             renderer = this.renderer = new GPURenderer()
             renderer.init(canvas, "premultiplied").then(async () => {
                 this.medias = await this.loadMedias();
@@ -39,6 +48,19 @@ export class Sample {
                 this.start(renderer);
                 if (onReady) onReady(canvas);
             })
+        } else {
+            canvas.style.display = "none";
+            if (!Sample.canvas2d) {
+                Sample.canvas2d = document.createElement("canvas");
+                Sample.canvas2d.width = canvas.width;
+                Sample.canvas2d.height = canvas.height;
+
+                canvas.parentNode.appendChild(Sample.canvas2d);
+
+            }
+            Sample.canvas2d.style.display = "flex";
+
+            this.startCanvas2D(Sample.canvas2d.getContext("2d"));
         }
 
         const animate = () => {

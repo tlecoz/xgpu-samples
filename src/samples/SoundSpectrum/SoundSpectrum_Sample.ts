@@ -15,6 +15,7 @@ export class SoundSpectrum_Sample extends Sample {
         transform.scaleX = transform.scaleY = transform.scaleZ = renderer.width / 512;
 
         cube.onDrawBegin = () => {
+
             transform.rotationX += 0.003;
             transform.rotationY = 0.3;
             transform.rotationZ += 0.003;

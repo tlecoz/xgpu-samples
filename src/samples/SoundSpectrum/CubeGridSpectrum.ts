@@ -1,4 +1,4 @@
-import { BuiltIns, Float, GPURenderer, ImageTexture, RenderPipeline, ShaderType, TextureSampler } from "xgpu";
+import { BuiltIns, Float, GPURenderer, ImageTexture, TextureSampler } from "xgpu";
 import { Cube } from "../ColorCube/Cube";
 import { SoundSpectrumBuffer } from "./SoundSpectrumBuffer";
 
@@ -22,11 +22,10 @@ export class CubeGridSpectrum extends Cube {
             instanceId: BuiltIns.vertexInputs.instanceIndex,
             textureSampler: new TextureSampler({ magFilter: "nearest", minFilter: "nearest" }),
             image: new ImageTexture({ source: image }),
+            fragUV: BuiltIns.vertexOutputs.Vec2,
+            dist: BuiltIns.vertexOutputs.Float,
             vertexShader: {
-                outputs: {
-                    fragUV: ShaderType.Vec2,
-                    dist: ShaderType.Float,
-                },
+
                 constants: `
                 fn createMatrix( x:f32,y:f32,z:f32, sx:f32, sy:f32, sz:f32)->mat4x4<f32> {
                     let matrix = mat4x4<f32>(
@@ -48,7 +47,7 @@ export class CubeGridSpectrum extends Cube {
                 let pct = amplitude / 256.0;
                 
                 let size =  200 + 200.0  * pct ;
-                let quadSize = size / gridSize;// -10.0*pct;
+                let quadSize = size / gridSize *pct;
                 let depthMax = 100.0 * sin(pct * 1.5708)*0.5;
                 
                 output.position = camera * transform * createMatrix(px*size,py*size,0.0, quadSize,quadSize,depthMax)  *  position;
@@ -56,11 +55,13 @@ export class CubeGridSpectrum extends Cube {
                 output.fragUV += vec2(px,py);
 
                 //cheap light effect 
-                output.dist = 1.0-distance(output.position, vec4(0.0,0.0,size*2.0,1.0))/(size * 3.0 * ${(renderer.width / 512).toFixed(2)});
+                output.dist = 3.0-distance(vec4(px*size,py*size,depthMax,1.0), vec4(-size*0.25,0.0,size,1.0))/(size *  ${(renderer.width / 512).toFixed(2)})*3.7;
                
             `}
-            , fragmentShader: `output.color = vec4( textureSample(image, textureSampler, fragUV).rgb * dist * 2.0  , 1.0);`
+            , fragmentShader: `output.color = vec4( textureSample(image, textureSampler, fragUV).rgb * dist   , 1.0);`
         })
+
+        console.log(this.resources)
     }
 
 

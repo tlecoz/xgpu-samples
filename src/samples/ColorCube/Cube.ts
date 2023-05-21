@@ -1,5 +1,5 @@
-import { BuiltIns, RenderPipeline, ShaderType, VertexAttribute, VertexBuffer, Matrix4x4 } from "xgpu";
-import { cubeVertexArray, cubeVertexSize, cubeUVOffset, cubePositionOffset } from "../../meshes/CubeMesh";
+import { BuiltIns, RenderPipeline, VertexAttribute } from "xgpu";
+import { cubeVertexArray, cubeVertexSize, cubePositionOffset } from "../../meshes/CubeMesh";
 import { Camera } from "./Camera";
 import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 

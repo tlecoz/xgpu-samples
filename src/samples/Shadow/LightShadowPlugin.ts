@@ -1,4 +1,4 @@
-import { RenderPipeline, VertexAttribute, Matrix4x4, TextureSampler, ShaderType } from "xgpu";
+import { RenderPipeline, VertexAttribute, Matrix4x4, TextureSampler, BuiltIns } from "xgpu";
 import { LightPlugin } from "../Light/LightPlugin";
 import { ShadowPipeline } from "./ShadowPipeline";
 
@@ -35,7 +35,7 @@ export class LightShadowPlugin extends LightPlugin {
 
         this.vertexShader.outputs = {
             ...this.vertexShader.outputs,
-            shadowPos: ShaderType.Vec3
+            shadowPos: BuiltIns.vertexOutputs.Vec3
         }
 
         this.vertexShader.main += `
@@ -52,8 +52,8 @@ export class LightShadowPlugin extends LightPlugin {
 
 
         this.fragmentShader.constants = `
-      const shadowDepthTextureSize: f32 = ${Math.round(depthTextureSize)}.0; 
-      `;
+        const shadowDepthTextureSize: f32 = ${Math.round(depthTextureSize)}.0; 
+        `;
 
         (this.fragmentShader.main as string[])[0] = `
           // Percentage-closer filtering. Sample texels in the region

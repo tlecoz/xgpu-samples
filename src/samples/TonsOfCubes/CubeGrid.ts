@@ -1,5 +1,5 @@
-import { BuiltIns, Float, GPURenderer, RenderPipeline, ShaderType, Vec3, VertexAttribute, WgslUtils } from "xgpu";
-import { cubeVertexArray, cubeVertexSize, cubeUVOffset, cubePositionOffset } from "../../meshes/CubeMesh";
+import { BuiltIns, Float, GPURenderer, RenderPipeline, Vec3, VertexAttribute } from "xgpu";
+import { cubeVertexArray, cubeVertexSize, cubePositionOffset } from "../../meshes/CubeMesh";
 import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 import { Camera } from "../ColorCube/Camera";
 export class CubeGrid extends RenderPipeline {
@@ -22,7 +22,6 @@ export class CubeGrid extends RenderPipeline {
             instanceCount,
             instanceId: BuiltIns.vertexInputs.instanceIndex,
             position: VertexAttribute.Vec4(cubePositionOffset),
-            //uv: VertexAttribute.Vec2(cubeUVOffset),
 
             grid,
             time: new Float(0),
@@ -30,12 +29,8 @@ export class CubeGrid extends RenderPipeline {
             cubeSize,
             modelView: this.transform,
             camera: this.camera,
-
-            vertexShader: {
-                outputs: {
-                    fragPosition: ShaderType.Vec4
-                },
-                main: `
+            fragPosition: BuiltIns.vertexOutputs.Vec4,
+            vertexShader: `
                 let id = f32(instanceId);
                 let idx = id % grid.x;
                 let idy = floor(id / grid.x) % grid.y;
@@ -51,7 +46,7 @@ export class CubeGrid extends RenderPipeline {
                 output.position = uniforms.camera * uniforms.modelView * vec4(pos.xyz,1.0);
                 output.fragPosition = vec4(0.5 + 0.5 * position.xyz,1.0 );
                 `
-            },
+            ,
             fragmentShader: `output.color = fragPosition;`
         });
 

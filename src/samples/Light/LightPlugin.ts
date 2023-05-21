@@ -1,4 +1,4 @@
-import { BuiltIns, Matrix4x4, PipelinePlugin, RenderPipeline, ShaderType, Vec3, VertexAttribute } from "xgpu";
+import { BuiltIns, Matrix4x4, PipelinePlugin, RenderPipeline, Vec3, VertexAttribute } from "xgpu";
 import { Light } from "./Light";
 
 export class LightPlugin extends PipelinePlugin {
@@ -22,11 +22,12 @@ export class LightPlugin extends PipelinePlugin {
             light: new Light(target.renderer.width, target.renderer.height),
         }
 
+
         this.vertexShader = {
             outputs: {
-                fragNorm: ShaderType.Vec3,
-                fragPos: ShaderType.Vec3,
-                transformedLightPos: ShaderType.Vec3
+                fragNorm: BuiltIns.vertexOutputs.Vec3,
+                fragPos: BuiltIns.vertexOutputs.Vec3,
+                transformedLightPos: BuiltIns.vertexOutputs.Vec3
             },
             main: `
             output.fragPos = output.position.xyz;

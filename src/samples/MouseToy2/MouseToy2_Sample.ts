@@ -1,4 +1,4 @@
-import { Float, GPURenderer, ShaderType, UniformBuffer } from "xgpu";
+import { BuiltIns, Float, GPURenderer, UniformBuffer } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { MouseToy } from "../MouseToy/MouseToy";
 
@@ -10,7 +10,7 @@ export class MouseToy2 extends MouseToy {
     constructor(renderer: GPURenderer) {
         super(renderer);
 
-        this.vertexShader.addOutputVariable("dist", ShaderType.Float);
+        this.vertexShader.addOutputVariable("dist", BuiltIns.vertexOutputs.Float);
 
         const uniformBuffer: UniformBuffer = this.bindGroups.getGroupByName("default").get("uniforms") as UniformBuffer;
 
