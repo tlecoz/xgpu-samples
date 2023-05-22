@@ -9,8 +9,8 @@ export class VideoCube_Sample extends Sample {
         const video: HTMLVideoElement = this.medias.video;
         const cube = new VideoCube(renderer, video);
         const transform = cube.transform;
-        transform.z = 700;
-        transform.scaleX = transform.scaleY = transform.scaleZ = 125 * renderer.width / 512;
+
+        transform.scaleX = transform.scaleY = transform.scaleZ = 125 * Math.min(window.innerWidth, window.innerHeight) / 512;
         cube.onDrawBegin = () => {
             transform.rotationX += 0.01;
             transform.rotationY += 0.01;

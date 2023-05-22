@@ -1,8 +1,9 @@
 import { BuiltIns, GPURenderer, HeadlessGPURenderer, IndexBuffer, Matrix4x4, RenderPipeline, UniformBuffer, VertexAttribute, VertexBuffer } from "xgpu";
 import { Camera } from "../ColorCube/Camera";
 import { dragonMesh } from "./DragonMesh";
+import { ResizableRenderPipeline } from "../HelloTriangle/ResizableRenderPipeline";
 
-export class Dragon extends RenderPipeline {
+export class Dragon extends ResizableRenderPipeline {
 
     public model: Matrix4x4;
     public camera: Camera;

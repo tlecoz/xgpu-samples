@@ -11,8 +11,8 @@ export class ColorCube_Sample extends Sample {
         const cube = new Cube(renderer);
         const transform = cube.transform;
 
-        transform.z = 500;
-        transform.scaleX = transform.scaleY = transform.scaleZ = 100 * Math.min(window.innerWidth, window.innerHeight) / 512;
+
+        transform.scaleX = transform.scaleY = transform.scaleZ = 125 * Math.min(window.innerWidth, window.innerHeight) / 512;
         cube.onDrawBegin = () => {
 
             transform.rotationX += 0.01;

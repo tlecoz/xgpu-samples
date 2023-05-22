@@ -1,5 +1,6 @@
-import { GPURenderer, RenderPipeline, VertexBuffer, VertexAttribute, IndexBuffer, BuiltIns } from "xgpu";
+import { GPURenderer, VertexBuffer, VertexAttribute, IndexBuffer, BuiltIns } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
+import { ResizableRenderPipeline } from "../HelloTriangle/ResizableRenderPipeline";
 
 
 export class IndexBuffer_Sample extends Sample {
@@ -22,7 +23,7 @@ export class IndexBuffer_Sample extends Sample {
         const indexBuffer = new IndexBuffer({ nbPoint: indices.length })
 
 
-        const pipeline = new RenderPipeline(renderer);
+        const pipeline = new ResizableRenderPipeline(renderer);
         pipeline.initFromObject({
             buffer,
             indexBuffer,

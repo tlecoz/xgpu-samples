@@ -23,9 +23,9 @@ export class CubeMap extends Cube {
         let now = new Date().getTime();
         this.onDrawEnd = () => {
             let time = (new Date().getTime() - now) / 1000;
-            this.transform.scaleX = this.transform.scaleY = this.transform.scaleZ = 10000;
+            this.transform.scaleX = this.transform.scaleY = this.transform.scaleZ = 10000 * Math.max(window.innerWidth, window.innerHeight) / 512;;
             this.transform.rotationY = Math.sin(time * 0.15 + 1) * Math.PI;
-            this.transform.rotationX = 0.25 + Math.cos(time * 0.4) * Math.PI * 0.1;
+            this.transform.rotationX = -0.15 + Math.cos(time * 0.4) * Math.PI * 0.1;
         }
 
 

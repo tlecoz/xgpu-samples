@@ -1,6 +1,7 @@
 import { RenderPipeline, IndexBuffer, VertexAttribute, Matrix4x4 } from "xgpu";
+import { ResizableRenderPipeline } from "../HelloTriangle/ResizableRenderPipeline";
 
-export class ShadowPipeline extends RenderPipeline {
+export class ShadowPipeline extends ResizableRenderPipeline {
 
     constructor(lightPipeline: RenderPipeline, required: {
         indexBuffer: IndexBuffer,

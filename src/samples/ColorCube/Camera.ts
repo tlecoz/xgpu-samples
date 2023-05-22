@@ -37,7 +37,7 @@ export class Camera extends Matrix4x4 {
         this._zFar = zFar;
 
         this._target = Camera.origin;
-        this._eyePosition = new Vec3(0, 0, -this._focal);
+        this._eyePosition = new Vec3(0, 0, this._focal);
         this._viewMatrix = new Matrix4x4();
         this._projectionMatrix = new Matrix4x4();
 
@@ -63,6 +63,11 @@ export class Camera extends Matrix4x4 {
     public get screenH(): number { return this._screenH }
     public set screenH(n: number) {
         this._screenH = n;
+
+        var h: number = n * 0.5;
+        var fov: number = Math.PI / 180 * this.fovInDegree;
+        var focal = (Math.cos(fov / 2) / Math.sin(fov / 2)) * h;
+        this.eyePosition.z = focal;
         this.mustBeTransfered = true;
     }
     public get fovInDegree(): number { return this._fovInDegree }

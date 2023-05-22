@@ -7,17 +7,17 @@ export class TwoCubes_Sample extends Sample {
     protected async start(renderer: GPURenderer): Promise<void> {
 
         const cube = new Cube(renderer)
-        const trans = cube.resources.transform;
+        const trans = cube.transform;
 
-        trans.z = 1000;
-        trans.scaleX = trans.scaleY = trans.scaleZ = 125;
+        trans.z = -1000;
+        trans.scaleX = trans.scaleY = trans.scaleZ = 125 * Math.min(window.innerWidth, window.innerHeight) / 512;;
 
         //cube.createPipelineInstanceArray allow us to define
         //the resources available per instance during the 'onDraw'.
 
         const nbCube: number = 2;
         const instances = cube.createPipelineInstanceArray([
-            trans
+            cube.resources.transform
         ], nbCube)
 
         const now = new Date().getTime();
@@ -25,14 +25,12 @@ export class TwoCubes_Sample extends Sample {
             let time = (new Date().getTime() - now) / 1000;
             const { transform } = instances[id];
 
-            //the word "transform" is the name used to store this ressource 
+            //the word "transform" here is the name used to store this ressource 
             //in Pipeline.initFromObject.
 
             //=> Pipeline.resource is the value returned by Pipeline.initFromObject ,
             // it contains all the resource défined during its call directly binded 
             // to Pipeline.bindgroups
-
-
 
             transform.x = - renderer.width * 0.4 + renderer.width * 0.8 * id;
             transform.rotationX = transform.rotationY = transform.rotationZ = id + time;

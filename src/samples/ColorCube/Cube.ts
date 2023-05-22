@@ -1,9 +1,10 @@
-import { BuiltIns, RenderPipeline, VertexAttribute } from "xgpu";
+import { BuiltIns, VertexAttribute } from "xgpu";
 import { cubeVertexArray, cubeVertexSize, cubePositionOffset } from "../../meshes/CubeMesh";
 import { Camera } from "./Camera";
 import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
+import { ResizableRenderPipeline } from "../HelloTriangle/ResizableRenderPipeline";
 
-export class Cube extends RenderPipeline {
+export class Cube extends ResizableRenderPipeline {
 
     constructor(renderer, options?: any) {
         super(renderer);
@@ -24,6 +25,12 @@ export class Cube extends RenderPipeline {
         });
 
         (this.resources.position as VertexAttribute).vertexBuffer.setComplexDatas(cubeVertexArray, cubeVertexSize);
+
+        this.screenDim.onChange = () => {
+            console.log(this.screenDim.width, this.screenDim.height)
+            this.resources.camera.screenW = this.screenDim.width;
+            this.resources.camera.screenH = this.screenDim.height;
+        }
     }
 
     public get camera(): Camera { return this.resources.camera; }

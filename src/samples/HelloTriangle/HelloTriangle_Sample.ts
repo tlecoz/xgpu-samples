@@ -1,6 +1,7 @@
 
 import { GPURenderer, RenderPipeline, VertexAttribute } from "xgpu";
 import { Sample } from "./Sample";
+import { ResizableRenderPipeline } from "./ResizableRenderPipeline";
 
 export class HelloTriangle_Sample extends Sample {
 
@@ -20,7 +21,7 @@ export class HelloTriangle_Sample extends Sample {
 
     protected async start(renderer: GPURenderer): Promise<void> {
 
-        const pipeline: RenderPipeline = new RenderPipeline(renderer);
+        const pipeline: RenderPipeline = new ResizableRenderPipeline(renderer);
         pipeline.initFromObject({
             position: VertexAttribute.Vec2([
                 [0.0, 0.5],

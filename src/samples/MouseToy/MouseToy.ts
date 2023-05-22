@@ -1,8 +1,9 @@
-import { BuiltIns, GPURenderer, RenderPipeline, Vec4, VertexAttribute } from "xgpu";
+import { BuiltIns, GPURenderer, Vec4, VertexAttribute } from "xgpu";
 import { MouseControler } from "./MouseControler";
+import { ResizableRenderPipeline } from "../HelloTriangle/ResizableRenderPipeline";
 
 
-export class MouseToy extends RenderPipeline {
+export class MouseToy extends ResizableRenderPipeline {
 
     public grid: Vec4 = new Vec4(32, 32, 0.05, 1);
 

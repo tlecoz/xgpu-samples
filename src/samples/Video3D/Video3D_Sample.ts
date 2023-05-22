@@ -62,11 +62,8 @@ export class Video3D_Sample extends Sample {
         }
 
 
-        //this.video = await loadVideo("../../assets/video.webm");
-        this.video = await loadVideo("../../assets/_video9.mp4");
+        this.video = await loadVideo("../../assets/video.webm");
 
-        const heightRatio = this.video.videoHeight / this.video.videoWidth;
-        console.log("SIZE ", renderer.width, renderer.height, " :::: ", this.video.videoWidth, this.video.videoHeight)
         const headlessRenderer = new HeadlessGPURenderer(true);
         await headlessRenderer.init(this.video.videoWidth, this.video.videoHeight)
         const textureSampler: TextureSampler = new TextureSampler();
@@ -76,9 +73,6 @@ export class Video3D_Sample extends Sample {
         //-----
 
         const nb = Math.floor(headlessRenderer.width * headlessRenderer.height);
-
-        console.log(headlessRenderer.width + " x " + headlessRenderer.height)
-
         const buffer: VertexBufferIO = new VertexBufferIO({ pixel: VertexAttribute.Vec4() })
         buffer.datas = new Float32Array(nb * 4);
 

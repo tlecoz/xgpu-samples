@@ -15,8 +15,8 @@ export class FractalCube_Sample extends Sample {
         cube.fragmentShader.main.createNode(`output.color = vec4( (fragPosition.rgb -output.color.rgb)  , 1.0);`)
 
         const transform = cube.transform;
-        transform.z = 700;
-        transform.scaleX = transform.scaleY = transform.scaleZ = 125 * renderer.width / 512;
+
+        transform.scaleX = transform.scaleY = transform.scaleZ = 125 * Math.min(window.innerWidth, window.innerHeight) / 512;
         cube.onDrawBegin = () => {
             transform.rotationX += 0.01;
             transform.rotationY += 0.01;

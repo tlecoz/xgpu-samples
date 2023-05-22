@@ -1,8 +1,9 @@
-import { BuiltIns, Float, GPURenderer, RenderPipeline, Vec3, VertexAttribute } from "xgpu";
+import { BuiltIns, Float, GPURenderer, Vec3, VertexAttribute } from "xgpu";
 import { cubeVertexArray, cubeVertexSize, cubePositionOffset } from "../../meshes/CubeMesh";
 import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 import { Camera } from "../ColorCube/Camera";
-export class CubeGrid extends RenderPipeline {
+import { ResizableRenderPipeline } from "../HelloTriangle/ResizableRenderPipeline";
+export class CubeGrid extends ResizableRenderPipeline {
 
     public camera: Camera;
     public transform: ModelViewMatrix = new ModelViewMatrix();
