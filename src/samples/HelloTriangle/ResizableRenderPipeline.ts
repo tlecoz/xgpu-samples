@@ -19,27 +19,14 @@ export class ResizableRenderPipeline extends RenderPipeline {
 
     public initFromObject(o: any): any {
 
-
-        if (!this.resources) {
-            o.screenDim = this.screenDim;
-        }
-
-        console.log(o);
-
-
-
-
-
-
-
-
-
-        return super.initFromObject({ ...o })
+        return super.initFromObject({
+            screenDim: this.screenDim,
+            ...o
+        })
     }
 
     public buildGpuPipeline() {
 
-        console.log("resources.types = ", this.bindGroups.resources.types)
 
         /*
         VertexShader.main is a ShaderNode. 
