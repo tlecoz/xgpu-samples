@@ -19,6 +19,7 @@
         "ComputeShaderCanvas2D",
         "ComputeTexture",
         "Video3D",
-        "Ribbon"
+        "Ribbon",
+        "TestAlignment"
     ]
 }

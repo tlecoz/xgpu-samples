@@ -1,5 +1,6 @@
-import { BuiltIns, Float, GPURenderer, RenderPipeline, Vec2, Vec3, Vec4 } from "xgpu";
+import { BuiltIns, Float, GPURenderer, Matrix2x2, Matrix2x3, Matrix3x3, Matrix4x4, RenderPipeline, UniformGroup, UniformGroupArray, Vec2, Vec3, Vec4, Vec4Array } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
+import { vec3 } from "gl-matrix";
 
 
 class Mouse extends Vec3 {
@@ -32,17 +33,77 @@ class Mouse extends Vec3 {
 }
 
 
+
+
+
+
+
+
+
 export class TestAlignment_Sample extends Sample {
 
     protected async start(renderer: GPURenderer): Promise<void> {
 
+
+
+        /*
+        const classes = [Float, Vec2, Vec3, Vec4, Matrix4x4, Matrix2x2, Matrix2x3, Matrix3x3];
+        const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+        const getChar = () => {
+            return alphabet[Math.floor(Math.random() * alphabet.length)];
+        }
+
+        const o = {};
+        let test = "";
+        for (let i = 0; i < 100; i++) {
+            const n = Math.floor((Math.random() * 100) / (100 / classes.length))
+            const name = getChar() + getChar() + getChar() + "_" + Math.floor(Math.random() * 1000);
+            o[name] = new classes[n]();
+            if (i === 50) test = name;
+        }
+
+        o[test] = new Vec3(1.0, 0.0, 1.0);
+
+        var myGroup = new UniformGroup(o);
+        */
+
+
+
+        var otherObj = {
+            aaa: new Float(1),
+            bbb: new Vec2(1.0, 1.0),
+            ccc: new Vec3(0.0, 1.0, 0.0),
+            ddd: new Vec4(4.0, 4.0, 4.0, 4.0)
+        }
+
+
+        const test = "ee.ccc";
+        var myGroup = new UniformGroup({
+            aa: new Float(1),
+            bb: new Vec2(1.0, 1.0),
+            cc: new Vec3(1.0, 0.0, 1.0),
+            dd: new Vec4(4.0, 4.0, 4.0, 4.0),
+            ee: new UniformGroup(otherObj),
+        })
+
+
+        const groupArray = new UniformGroupArray([
+            myGroup,
+            new UniformGroup({ aaaaaaaaaaa: new Float(123) })
+        ])
+
+
         const pipeline = new RenderPipeline(renderer);
         pipeline.initFromObject({
-
+            //obj,
+            //myGroup,
+            groupArray,
             a: new Float(0.25),
             mouse: new Mouse(renderer.canvas),
             b: new Vec2(0.5, 0.0),
             c: new Float(0.75),
+            //tab:new Vec2Array()
             vertexId: BuiltIns.vertexInputs.vertexIndex,
             vertexCount: 6,
             vertexShader: {
@@ -60,8 +121,8 @@ export class TestAlignment_Sample extends Sample {
             },
             fragmentShader: `
                 //output.color = vec4(a,a,a,1.0);
-                output.color = vec4(mouse,1.0);
-                //output.color = vec4(c,c,c,1.0);
+                //output.color = vec4(mouse.x,mouse.y,mouse.x*mouse.y,1.0);
+                output.color = vec4(groupArray[0].${test},1.0);
             `
         })
 
