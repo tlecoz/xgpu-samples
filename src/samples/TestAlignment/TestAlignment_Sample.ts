@@ -1,6 +1,7 @@
-import { BuiltIns, Float, GPURenderer, Matrix2x2, Matrix2x3, Matrix3x3, Matrix4x4, RenderPipeline, UniformGroup, UniformGroupArray, Vec2, Vec3, Vec4, Vec4Array } from "xgpu";
+import { BuiltIns, Float, GPURenderer, Matrix2x2, Matrix2x3, Matrix3x3, Matrix4x4, RenderPipeline, TextureSampler, UniformGroup, UniformGroupArray, Vec2, Vec3, Vec4, Vec4Array } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { vec3 } from "gl-matrix";
+import { ImageTextureArray } from "xgpu/src/xGPU/shader/resources/ImageTextureArray";
 
 
 class Mouse extends Vec3 {
@@ -93,11 +94,17 @@ export class TestAlignment_Sample extends Sample {
             new UniformGroup({ aaaaaaaaaaa: new Float(123) })
         ])
 
+        const images = new ImageTextureArray({
+            source: [this.medias.bmp, this.medias.bmp2],
+            size: [this.medias.bmp.width, this.medias.bmp.height, 2]
+        })
 
         const pipeline = new RenderPipeline(renderer);
         pipeline.initFromObject({
             //obj,
             //myGroup,
+            imgSampler: new TextureSampler(),
+            images,
             groupArray,
             a: new Float(0.25),
             mouse: new Mouse(renderer.canvas),
@@ -106,6 +113,8 @@ export class TestAlignment_Sample extends Sample {
             //tab:new Vec2Array()
             vertexId: BuiltIns.vertexInputs.vertexIndex,
             vertexCount: 6,
+            uv: BuiltIns.vertexOutputs.Vec2,
+            textureId: BuiltIns.vertexOutputs.Float,
             vertexShader: {
                 constants: `
                 const pos = array<vec2<f32>,6>(
@@ -117,12 +126,17 @@ export class TestAlignment_Sample extends Sample {
                     vec2(-1.0, 1.0),
                  );
                 `,
-                main: `output.position = vec4(pos[vertexId],0.0,1.0);`
+                main: `
+                output.position = vec4(pos[vertexId],0.0,1.0);
+                output.uv = (pos[vertexId] + 1.0) * 0.5;
+                output.textureId = 1;
+                `
             },
             fragmentShader: `
                 //output.color = vec4(a,a,a,1.0);
                 //output.color = vec4(mouse.x,mouse.y,mouse.x*mouse.y,1.0);
-                output.color = vec4(groupArray[0].${test},1.0);
+                //output.color = vec4(groupArray[0].${test},1.0);
+                output.color = textureSample(images,imgSampler,uv,i32(textureId));
             `
         })
 
