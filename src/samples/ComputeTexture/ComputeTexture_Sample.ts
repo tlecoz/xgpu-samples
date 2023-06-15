@@ -54,7 +54,12 @@ export class ComputeTexture_Sample extends Sample {
             textureStore(image_out, id, col);
             `
         })
+
+
+
         computePipeline.nextFrame();
+
+
 
 
         const renderPipeline = new TexturedQuad(renderer, image, textureSampler);

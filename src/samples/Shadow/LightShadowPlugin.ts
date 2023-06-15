@@ -17,7 +17,7 @@ export class LightShadowPlugin extends LightPlugin {
         super(target, required);
 
         const shadow = new ShadowPipeline(target, {
-            indexBuffer: target.indexBuffer,
+            indexBuffer: target.drawConfig.indexBuffer,
             position: required.position,
             model: required.modelMatrix,
             lightProjection: this.bindgroupResources.light.items.projection

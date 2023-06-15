@@ -45,7 +45,7 @@ export class TestAlignment_Sample extends Sample {
 
     protected async start(renderer: GPURenderer): Promise<void> {
 
-        this.test03(renderer);
+        this.test02(renderer);
 
 
     }

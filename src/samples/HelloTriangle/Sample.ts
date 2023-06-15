@@ -42,7 +42,7 @@ export class Sample {
             canvas.style.display = "flex";
             if (Sample.canvas2d) Sample.canvas2d.style.display = "none";
             renderer = this.renderer = new GPURenderer()
-            renderer.init(canvas, "premultiplied").then(async () => {
+            renderer.initCanvas(canvas, "premultiplied").then(async () => {
                 this.medias = await this.loadMedias();
                 if (!renderer.canvas) return;
                 this.start(renderer);

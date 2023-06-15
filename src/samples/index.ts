@@ -19,5 +19,6 @@ export { Ribbon_Sample } from "./Ribbon/Ribbon_Sample";
 export { IndexBuffer_Sample } from "./IndexBuffer/IndexBuffer_Sample";
 export { TwoCubes_Sample } from "./TwoCubes/TwoCubes_Sample";
 export { TestAlignment_Sample } from "./TestAlignment/TestAlignment_Sample";
+export { RenderBundle_Sample } from "./RenderBundle/RenderBundle_Sample";
 
 export default {}

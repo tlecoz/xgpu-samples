@@ -20,6 +20,7 @@
         "ComputeTexture",
         "Video3D",
         "Ribbon",
-        "TestAlignment"
+        "TestAlignment",
+        "RenderBundle"
     ]
 }

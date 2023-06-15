@@ -1,4 +1,4 @@
-import { BuiltIns, ComputePipeline, Float, Vec2, Vec4, VertexAttribute, VertexBufferIO, XGPU } from "xgpu";
+import { BuiltIns, ComputePipeline, Vec2, VertexAttribute, VertexBufferIO, XGPU } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 
 export class ComputeShaderCanvas2D_Sample extends Sample {
@@ -33,6 +33,7 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
                 position: VertexAttribute.Vec2(),
                 speed: VertexAttribute.Vec2(),
             }),
+
             screen: new Vec2(ctx.canvas.width, ctx.canvas.height),
             global_id: BuiltIns.computeInputs.globalInvocationId,
             computeShader: `
@@ -43,7 +44,7 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
                 }
                 
                 var p:Particles = particles[index];
-               
+                
                 var px = p.position.x + p.speed.x;
                 var py = p.position.y + p.speed.y;
 
@@ -73,6 +74,7 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
 
                 if(p.life > 0){
                     p.life -= 1.0;
+                   
                 }
                                
                 var nbCollision = 0.0;
@@ -111,14 +113,22 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
                     p.speed.x = cos(sumAngle);
                     p.speed.y = sin(sumAngle);
                     p.life = 50.0;
+
+                   
                 }
                 
                 particles_out[index] = p;
+
+                
+                
+                
+               
                 `
             ,
 
         });
 
+        let frameData = null;
         (resources.particles as VertexBufferIO).createVertexInstances(nbParticle, (instanceId: number) => {
             let angle = Math.random() * 3.1416 * 2;
             let radius = 3 + Math.random() * 12;
@@ -128,20 +138,23 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
                 speed: [Math.cos(angle), Math.sin(angle)],
                 life: [0]
             }
-        })
+        });
 
-        let frameData = null;
-        pipeline.onReceiveData = (datas: Float32Array) => frameData = datas;
+        (resources.particles as VertexBufferIO).onOutputData = (datas: ArrayBuffer) => frameData = new Float32Array(datas);
+
+
+
 
         let animate = () => {
             if (ctx.canvas.style.display === "none") return;
 
             if (frameData) {
+
                 ctx.fillStyle = "#000";
                 ctx.fillRect(0, 0, w, h);
                 (resources.particles as VertexBufferIO).getVertexInstances(frameData, (o: any) => {
                     ctx.beginPath();
-                    ctx.fillStyle = "rgb(255," + (255 * (o.life.x / 50)) + "," + (255 * (o.life.x / 50)) + ")";
+                    ctx.fillStyle = "rgb(255," + (255 - 255 * (o.life.x / 50)) + "," + (255 - 255 * (o.life.x / 50)) + ")";
                     ctx.ellipse(o.position.x, o.position.y, o.radius.x, o.radius.x, 0, 0, Math.PI * 2);
                     ctx.fill();
                 })

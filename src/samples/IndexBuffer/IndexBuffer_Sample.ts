@@ -19,9 +19,9 @@ export class IndexBuffer_Sample extends Sample {
         })
 
 
-        const indices = new Uint32Array([0, 0, 0, 0, 0, 0])
+        const indices = new Uint32Array([0, 1, 2, 1, 3, 2])
         const indexBuffer = new IndexBuffer({ nbPoint: indices.length })
-
+        indexBuffer.datas = indices;
 
         const pipeline = new ResizableRenderPipeline(renderer);
         pipeline.initFromObject({
@@ -37,7 +37,7 @@ export class IndexBuffer_Sample extends Sample {
             `
         })
 
-        indexBuffer.datas = new Uint32Array([0, 1, 2, 1, 3, 2]);
+
 
         renderer.addPipeline(pipeline);
 
