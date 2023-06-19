@@ -9,6 +9,7 @@ export class SoundSpectrumBuffer extends VertexBuffer {
     constructor(attributeName: string, nbValue: number) {
         const o: any = {};
         o[attributeName] = VertexAttribute.Float()
+        console.log("SoundSpectrumBuffer ", nbValue)
         super(o, { stepMode: "instance", datas: new Float32Array(nbValue) })
     }
 

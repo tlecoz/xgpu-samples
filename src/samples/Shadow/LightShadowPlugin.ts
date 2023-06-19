@@ -66,7 +66,7 @@ export class LightShadowPlugin extends LightPlugin {
  
               visibility += textureSampleCompare(
                   shadowMap, shadowSampler,
-                  shadowPos.xy + offset, shadowPos.z - 0.005
+                  shadowPos.xy + offset, shadowPos.z - 0.008
               );
               }
           }

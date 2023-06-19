@@ -21,6 +21,6 @@
         "Video3D",
         "Ribbon",
         "TestAlignment",
-        "RenderBundle"
+        "PolygonInstances"
     ]
 }

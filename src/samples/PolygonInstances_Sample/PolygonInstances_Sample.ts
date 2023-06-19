@@ -1,4 +1,4 @@
-import { Bindgroup, BuiltIns, GPURenderer, ImageTexture, IndexBuffer, TextureSampler, UniformBuffer, VertexAttribute, VertexBuffer } from "xgpu";
+import { Bindgroup, BuiltIns, GPURenderer, ImageTexture, IndexBuffer, Matrix4x4, TextureSampler, UniformBuffer, VertexAttribute, VertexBuffer } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { createSphereMesh, SphereLayout } from "../../meshes/Sphere";
 import { ResizableRenderPipeline } from "../HelloTriangle/ResizableRenderPipeline";
@@ -6,7 +6,7 @@ import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 import { Camera } from "../ColorCube/Camera";
 
 
-export class RenderBundle_Sample extends Sample {
+export class PolygonInstances_Sample extends Sample {
 
     public async start(renderer: GPURenderer): Promise<void> {
 
@@ -14,7 +14,7 @@ export class RenderBundle_Sample extends Sample {
             const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d");
             canvas.width = canvas.height = 256;
-            ctx.fillStyle = "#ff0000";
+            ctx.fillStyle = "rgb(" + Math.round(Math.random() * 255) + "," + Math.round(Math.random() * 255) + "," + Math.round(Math.random() * 255) + ")";
             ctx.fillRect(0, 0, 256, 256);
             ctx.fillStyle = "#ffffff";
             ctx.font = "100px Verdana";
@@ -23,7 +23,7 @@ export class RenderBundle_Sample extends Sample {
         }
 
 
-        const createPolygon = async (posx: number, nbSide: number) => {
+        const createPolygon = async (posx: number, posy: number, nbSide: number) => {
 
             const pos = [];
             let indices = [];
@@ -38,7 +38,8 @@ export class RenderBundle_Sample extends Sample {
 
             const matrix = new ModelViewMatrix();
             matrix.scaleX = matrix.scaleY = 100;
-            matrix.x = posx
+            matrix.x = posx;
+            matrix.y = posy;
 
             return {
                 vertexBuffer: new VertexBuffer({ position: VertexAttribute.Vec2(pos) }),
@@ -53,8 +54,8 @@ export class RenderBundle_Sample extends Sample {
 
 
         const polygons = [];
-        for (let i = 0; i < 3; i++) {
-            polygons[i] = await createPolygon(-250 + i * 250, 3 + i);
+        for (let i = 0; i < 9; i++) {
+            polygons[i] = await createPolygon(-250 + (i % 3) * 250, -(renderer.height - 400) * 0.5 + Math.floor(i / 3) * 250, 3 + i);
         }
 
 
@@ -63,7 +64,7 @@ export class RenderBundle_Sample extends Sample {
         const bindgroup = new Bindgroup();
         bindgroup.initFromObject(poly);
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < polygons.length; i++) {
             bindgroup.createInstance(polygons[i])
         }
 
@@ -82,13 +83,31 @@ export class RenderBundle_Sample extends Sample {
                 output.uv = position*0.5 + 0.5;
             `,
             fragmentShader: `
-                output.color = textureSample(img, imgSampler, uv) + vec4(uv,0.5,1.0);
+                output.color = textureSample(img, imgSampler, uv) * vec4(uv*2.0,1.0,1.0);
             `
         })
 
 
 
+        pipeline.onDrawEnd = () => {
+            let matrix: Matrix4x4;
+            let speed: number;
+            for (let i = 0; i < polygons.length; i++) {
+                matrix = polygons[i].properties.items.matrix;
+                speed = 0.01 + i / 300;
+                matrix.rotationX += speed;
+                matrix.rotationY += speed;
+                matrix.rotationZ += speed;
+            }
+            polygons[4].properties.items.matrix.rotationY += 0.01;
+            polygons[4].properties.items.matrix.rotationX += 0.01;
+            polygons[4].properties.items.matrix.rotationZ += 0.01;
+        }
+
+
         renderer.addPipeline(pipeline);
+
+
 
 
     }
