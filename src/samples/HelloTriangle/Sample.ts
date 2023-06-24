@@ -16,6 +16,21 @@ export class Sample {
         XGPU.setPreferredCanvasFormat("bgra8unorm");
         console.clear();
 
+        let div = document.createElement("div");
+        div.style.backgroundColor = "#f0f";
+        div.style.width = "30px";
+        div.style.height = "30px";
+        div.style.zIndex = "999999999999";
+        div.style.position = "absolute";
+        div.style.top = "0px";
+        div.style.left = "0px";
+        div.style.cursor = "pointer";
+        document.body.appendChild(div);
+
+        div.onclick = () => {
+            XGPU.loseDevice();
+        }
+
     }
 
     public params: { name: string, min?: number, max?: number, object: PrimitiveType, id?: number, round?: boolean }[] = [];

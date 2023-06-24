@@ -12,7 +12,11 @@ export class Shadow_Sample extends Sample {
         if (this.started) return;
         this.started = true;
 
+        console.warn("le pbm de l'ombre vient de la hauteur de la fenetre de rendu, il doit y avoir un pbm avec pipelineresize et Light/Shadow ")
+
         const dragon = new Dragon(renderer);
+        dragon.debug = "dragon";
+
         dragon.model.scaleXYZ = 600;
         renderer.addPipeline(dragon)
 

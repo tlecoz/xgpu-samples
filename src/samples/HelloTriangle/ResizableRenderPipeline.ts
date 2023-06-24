@@ -1,5 +1,6 @@
-import { GPURenderer, HeadlessGPURenderer, RenderPipeline, UniformBuffer } from "xgpu";
+import { GPURenderer, HeadlessGPURenderer, RenderPipeline } from "xgpu";
 import { Dimension } from "./Dimension";
+import { IRenderer } from "xgpu/src/xGPU/IRenderer";
 
 export class ResizableRenderPipeline extends RenderPipeline {
 
@@ -12,7 +13,7 @@ export class ResizableRenderPipeline extends RenderPipeline {
     to fix the aspect ratio of the rendering output.     
     */
 
-    constructor(renderer: GPURenderer | HeadlessGPURenderer, bgColor?: { r: number, g: number, b: number, a: number }) {
+    constructor(renderer: IRenderer, bgColor?: { r: number, g: number, b: number, a: number }) {
         super(renderer, bgColor);
         this.screenDim = new Dimension(renderer.width, renderer.height);
     }

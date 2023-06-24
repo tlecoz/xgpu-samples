@@ -22,7 +22,7 @@ export class LightShadowPlugin extends LightPlugin {
             model: required.modelMatrix,
             lightProjection: this.bindgroupResources.light.items.projection
         }, depthTextureSize)
-
+        shadow.debug = "shadow";
         target.renderer.addPipeline(shadow);
 
 
@@ -66,7 +66,7 @@ export class LightShadowPlugin extends LightPlugin {
  
               visibility += textureSampleCompare(
                   shadowMap, shadowSampler,
-                  shadowPos.xy + offset, shadowPos.z - 0.008
+                  shadowPos.xy + offset, shadowPos.z - 0.01
               );
               }
           }

@@ -47,4 +47,5 @@ export class ShadowPipeline extends ResizableRenderPipeline {
 
 
     }
+
 }

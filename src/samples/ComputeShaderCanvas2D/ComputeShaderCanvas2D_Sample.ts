@@ -148,7 +148,10 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
         let animate = () => {
             if (ctx.canvas.style.display === "none") return;
 
+            pipeline.update()
+
             if (frameData) {
+
 
                 ctx.fillStyle = "#000";
                 ctx.fillRect(0, 0, w, h);
