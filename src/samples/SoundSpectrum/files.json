@@ -1,0 +1,8 @@
+{
+    "files": [
+        "SoundSpectrum_Sample.ts",
+        "CubeGridSpectrum.ts",
+        "SoundSpectrumBuffer.ts",
+        "SoundSpectrum.ts"
+    ]
+}

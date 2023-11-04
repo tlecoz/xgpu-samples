@@ -1,0 +1,11 @@
+{
+    "APP_WIDTH": 1130,
+    "MENU_WIDTH": 300,
+    "HEADER_HEIGHT": 64,
+    "FOOTER_HEIGHT": 64,
+    "pages": {
+        "Samples": "Samples",
+        "Tutorials": "Tutorials",
+        "Documentation": "Documentation"
+    }
+}

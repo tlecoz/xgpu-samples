@@ -1,0 +1,31 @@
+{
+  "name": "xgpu-samples",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node set_xgpu_dev && vite",
+    "build": "tsc && vite build",
+    "postbuild": "node copyAssets.js",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.1.1",
+    "ts-node": "^10.9.1",
+    "tsjsondoc": "^1.2.8",
+    "typescript": "^5.0.2",
+    "vite": ">=4.3.9"
+  },
+  "dependencies": {
+    "@codemirror/basic-setup": "^0.20.0",
+    "@codemirror/gutter": "^0.19.9",
+    "@codemirror/lang-javascript": "^6.1.9",
+    "@codemirror/state": "^6.2.1",
+    "@codemirror/view": "^6.15.3",
+    "@webgpu/types": "^0.1.32",
+    "codemirror-minified": "^5.65.9",
+    "gl-matrix": "^3.4.3",
+    "stanford-dragon": "^1.1.1",
+    "xgpu": "^0.8.93"
+  }
+}
