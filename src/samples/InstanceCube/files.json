@@ -1,5 +1,6 @@
 {
     "files": [
-        "InstanceCube_Sample.ts"
+        "InstanceCube_Sample.ts",
+        "ModelViewMatrix.ts"
     ]
 }
