@@ -44,7 +44,7 @@ export class GraphicPipeline extends RenderPipeline {
                 output.curve = curves;
             `,
             fragmentShader: `
-                var col = vec4(1.0);
+                var col = vec4(pos,0.0,1.0);
                 var d = (curve.x * curve.x) - curve.y;
                 
                 if(curve.z == 0.0){
@@ -57,7 +57,7 @@ export class GraphicPipeline extends RenderPipeline {
                     }
                 }
                 
-                output.color = vec4(pos,0.0,col.a);
+                output.color = col;
             `
         });
 
