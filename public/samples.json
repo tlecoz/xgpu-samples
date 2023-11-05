@@ -146,6 +146,12 @@
             "files": [
                 "PolygonInstances_Sample.ts"
             ]
+        },
+        {
+            "name": "VectorGraphics",
+            "files": [
+                "VectorGraphics_Sample.ts"
+            ]
         }
     ]
 }

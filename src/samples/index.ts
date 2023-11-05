@@ -20,5 +20,5 @@ export { IndexBuffer_Sample } from "./IndexBuffer/IndexBuffer_Sample";
 export { TwoCubes_Sample } from "./TwoCubes/TwoCubes_Sample";
 export { TestAlignment_Sample } from "./TestAlignment/TestAlignment_Sample";
 export { PolygonInstances_Sample } from "./PolygonInstances/PolygonInstances_Sample";
-
+export { VectorGraphics_Sample } from "./VectorGraphics/VectorGraphics_Sample";
 export default {}
