@@ -150,7 +150,10 @@
         {
             "name": "VectorGraphics",
             "files": [
-                "VectorGraphics_Sample.ts"
+                "VectorGraphics_Sample.ts",
+                "GraphicPipeline.ts",
+                "Graphics.ts",
+                "EarCutting.ts"
             ]
         }
     ]
