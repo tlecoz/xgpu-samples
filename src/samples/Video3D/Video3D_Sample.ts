@@ -90,12 +90,7 @@ export class Video3D_Sample extends Sample {
             let index = global_id.x ;
             var p = buffer[index].pixel;
             
-            
-
             var id = f32(index);
-           
-
-           
             let ratio = screen.y / screen.x;
             let invRatio = (1 - ratio) * 0.5;
 
@@ -105,38 +100,26 @@ export class Video3D_Sample extends Sample {
             let py = (idy / screen.y) ;
             
             var col = textureSampleLevel(image,textureSampler,vec2(px  , py),0.0);
-            
-            
-
-            //p.z = 0.0;
-            
             p.z -= (p.z - (- (0.5 + ceil( distance(col.rgb,vec3(0.5)) * nbDepthLevel) / nbDepthLevel) * depthMax) ) * smoothFrame;
             
-            
-
             buffer_out[index].pixel.x = screen.x * invRatio + idx * ratio; 
             buffer_out[index].pixel.y = idy ;
             buffer_out[index].pixel.z = p.z;
-            
             `
         })
 
         computePipeline.nextFrame();
 
         /*
-        computePipeline.onReceiveData = (data) => {
-            computePipeline.onReceiveData = undefined
-        
+        buffer.onOutputData = (data) => {
+            console.log(data.byteLength);
         }
         */
-
 
         const modelMatrix = new Matrix4x4();
         const viewMatrix = new Matrix4x4();
         const renderPipeline = new RenderPipeline(renderer);
         const projection = new Camera(renderer.width, renderer.height, 45, 0.1, 100000);
-
-
 
         renderPipeline.initFromObject({
             depthTest: true,
@@ -159,7 +142,6 @@ export class Video3D_Sample extends Sample {
             vertexShader: `
            
             output.position = projection * viewMatrix * modelMatrix * vec4(pixel.xyz,1.0);
-
             output.uv = vec2(pixel.x/screen.x,pixel.y/screen.y) ;
             `,
             fragmentShader: `
@@ -169,8 +151,6 @@ export class Video3D_Sample extends Sample {
         })
 
         renderer.addPipeline(renderPipeline);
-
-
 
 
         viewMatrix.scaleY = this.video.videoHeight / this.video.videoWidth
@@ -185,17 +165,11 @@ export class Video3D_Sample extends Sample {
             modelMatrix.x = -headlessRenderer.width * 0.5;
             modelMatrix.y = -screen.y * 0.5;
             modelMatrix.z = depthMax.x;
-
             projection.z = -1500;
 
             headlessRenderer.update();
             computePipeline.nextFrame();
         }
-
-
-
-
-
 
     }
 

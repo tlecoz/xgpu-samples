@@ -26,6 +26,6 @@
     "codemirror-minified": "^5.65.9",
     "gl-matrix": "^3.4.3",
     "stanford-dragon": "^1.1.1",
-    "xgpu": "^0.8.93"
+    "xgpu": "^0.8.94"
   }
 }
