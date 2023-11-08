@@ -1,4 +1,4 @@
-import { BuiltIns, ComputePipeline, Float, IShaderResource, IVec2, IVec3, IVec4, Int, PrimitiveType, RenderPipeline, UVec2, UVec3, UVec4, Uint, UniformBuffer, Vec2, Vec3, Vec4, VertexAttribute, VertexBuffer, VertexBufferIO } from "xgpu";
+import { BuiltIns, ComputePipeline, Float, IShaderResource, IVec2, IVec3, IVec4, IndexBuffer, Int, PrimitiveType, RenderPipeline, UVec2, UVec3, UVec4, Uint, UniformBuffer, Vec2, Vec3, Vec4, VertexAttribute, VertexBuffer, VertexBufferIO } from "xgpu";
 
 export class VertexShaderDebugger extends ComputePipeline {
 
@@ -26,6 +26,24 @@ export class VertexShaderDebugger extends ComputePipeline {
                 io: {}, //computeShaders have a reserved bindgroup 'io' , dedicated to the ping-pong process 
             }
         };
+
+
+        /*
+        we check if the renderPipeline use an indexBuffer.
+        If yes, we create a vertexBuffer to represent it 
+        */
+
+
+        let indexBuffer: IndexBuffer = null
+        if (renderPipeline.resources.indexBuffer) indexBuffer = renderPipeline.resources.indexBuffer;
+        computeShaderObj["indexBuffer"] = new VertexBuffer({ id: VertexAttribute.Uint() }, {
+            stepMode: "vertex",
+            datas: indexBuffer.datas
+        })
+
+
+
+
         const result: any = {};
         const resultBufferStructure: any = {};
 
@@ -226,13 +244,16 @@ export class VertexShaderDebugger extends ComputePipeline {
 
 
 
-
-        let computeShader: string = `
+        let computeShader: string = ``;
+        if (indexBuffer) computeShader += `let index:u32 = indexBuffer[global_id.x].id;`;
+        else computeShader += `let index = global_id.x`;
+        computeShader += `
         let nbResult = arrayLength(&result);
-        let index = global_id.x;
         if(index >= nbResult){
             return;
         }
+
+
 
         var computeResult = result[index];
         `;
