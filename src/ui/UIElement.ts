@@ -10,6 +10,13 @@ export class UIElement {
         if (style) this.setStyle(style);
     }
 
+    public clear() {
+        for (let z in this) {
+            this[z] = null;
+            delete this[z];
+        }
+    }
+
     public click(): void { this.html.click(); }
     public set onclick(f: (element: UIElement) => void) {
         this.html.onclick = () => {

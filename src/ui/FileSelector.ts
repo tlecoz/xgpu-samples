@@ -58,7 +58,7 @@ export class FileSelector extends UIElement {
 
 
         const files: any = getSampleFilesByName(urlSampleName);//await getJsonObject("src/samples/" + urlSampleName + "/" + "files.json");
-        console.log("files = ", urlSampleName, files)
+
         this.buttons = [];
         for (let i = 0; i < files.length; i++) {
             const btn = this.buttons[i] = this.appendChild(new UIElement("div", {

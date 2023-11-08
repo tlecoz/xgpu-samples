@@ -1,4 +1,5 @@
 
+
 export { HelloTriangle_Sample } from "./HelloTriangle/HelloTriangle_Sample";
 export { ColorCube_Sample } from "./ColorCube/ColorCube_Sample";
 export { TexturedCube_Sample } from "./TexturedCube/TexturedCube_Sample";
@@ -21,4 +22,6 @@ export { TwoCubes_Sample } from "./TwoCubes/TwoCubes_Sample";
 export { TestAlignment_Sample } from "./TestAlignment/TestAlignment_Sample";
 export { PolygonInstances_Sample } from "./PolygonInstances/PolygonInstances_Sample";
 export { VectorGraphics_Sample } from "./VectorGraphics/VectorGraphics_Sample";
+export { Debugger_Sample } from "./Debugger/Debugger_Sample";
+
 export default {}

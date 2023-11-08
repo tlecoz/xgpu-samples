@@ -26,6 +26,8 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
 
 
         const pipeline = new ComputePipeline();
+        pipeline.debug = "ComputeShaderCanvas2D_Sample"
+
         const resources = pipeline.initFromObject({
             particles: new VertexBufferIO({
                 radius: VertexAttribute.Float(),
@@ -156,6 +158,20 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
                 ctx.fillStyle = "#000";
                 ctx.fillRect(0, 0, w, h);
                 (resources.particles as VertexBufferIO).getVertexInstances(frameData, (o: any) => {
+
+                    /*
+                    Be carefull : the object received from this function is reused for every call.
+                    
+                    In the context of this sample, I need the object just the time to draw the element on the canvas so it doesn't matter ;
+                    but with arbitrary-data in mind, not graphics , you will probably prefer to be able to manipulate the object as usual.
+                    
+                    You can do it by cloning the object like that : 
+
+                    let clone = {};
+                    for (let z in o) clone[z] = { ...o[z] };
+
+                    */
+
                     ctx.beginPath();
                     ctx.fillStyle = "rgb(255," + (255 - 255 * (o.life.x / 50)) + "," + (255 - 255 * (o.life.x / 50)) + ")";
                     ctx.ellipse(o.position.x, o.position.y, o.radius.x, o.radius.x, 0, 0, Math.PI * 2);

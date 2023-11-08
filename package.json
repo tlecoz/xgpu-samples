@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "dev2": "vite",
     "dev": "node set_xgpu_dev && vite",
     "build": "tsc && vite build",
     "postbuild": "node copyAssets.js",
@@ -26,6 +27,6 @@
     "codemirror-minified": "^5.65.9",
     "gl-matrix": "^3.4.3",
     "stanford-dragon": "^1.1.1",
-    "xgpu": "^0.8.94"
+    "xgpu": "file:../xgpu"
   }
 }

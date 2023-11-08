@@ -37,7 +37,7 @@ export class App extends UIElement {
 
         const start = async () => {
             const o = await getJsonObject("samples.json");
-            console.log(o);
+
             App.samples = o.samples;
 
             document.body.style.backgroundColor = "#cecece"
