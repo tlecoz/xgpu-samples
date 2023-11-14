@@ -13,8 +13,7 @@ export class DebuggingVertexShader_Sample extends Sample {
     protected async start(renderer: GPURenderer): Promise<void> {
 
         this.panel = new Panel(650, 630);
-        this.panel.init();
-        document.body.appendChild(this.panel.html);
+
 
         const matrixArrays: ModelViewMatrix[] = [];
         let m: ModelViewMatrix;

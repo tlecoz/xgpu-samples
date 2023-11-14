@@ -25,9 +25,8 @@ export class Panel extends UIElement {
 
         if (Panel.instance) Panel.instance.destroy();
         Panel.instance = this;
-    }
 
-    public init() {
+
         console.log("init panel")
         this.x = (window.innerWidth - this.width - 100);
         this.y = (100);
@@ -50,18 +49,23 @@ export class Panel extends UIElement {
 
         document.body.addEventListener("mousemove", this.onMouseMove);
         document.body.addEventListener("mouseup", this.onMouseUp);
-
+        document.body.appendChild(this.html);
     }
 
     private onMouseUp: (e: any) => void;
     private onMouseMove: (e: any) => void;
 
     public destroy() {
-        console.log("destroy panel")
-        delete this.html.onmousedown;
-        document.body.removeEventListener("mousemove", this.onMouseMove);
-        document.body.removeEventListener("mouseup", this.onMouseUp);
-        document.body.removeChild(this.html);
+        try {
+            console.log("destroy panel")
+            delete this.html.onmousedown;
+            document.body.removeEventListener("mousemove", this.onMouseMove);
+            document.body.removeEventListener("mouseup", this.onMouseUp);
+            document.body.removeChild(this.html);
+        } catch (e) {
+
+        }
+
     }
 
 
