@@ -159,7 +159,7 @@
         {
             "name": "DebuggingVertexShader",
             "files": [
-                "Debugger_Sample.ts",
+                "DebuggingVertexShader_Sample.ts",
                 "Panel.ts"
             ]
         }
