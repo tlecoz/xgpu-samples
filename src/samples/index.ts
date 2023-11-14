@@ -22,6 +22,6 @@ export { TwoCubes_Sample } from "./TwoCubes/TwoCubes_Sample";
 export { TestAlignment_Sample } from "./TestAlignment/TestAlignment_Sample";
 export { PolygonInstances_Sample } from "./PolygonInstances/PolygonInstances_Sample";
 export { VectorGraphics_Sample } from "./VectorGraphics/VectorGraphics_Sample";
-export { DebuggingVertexShader_Sample } from "./Debugger/DebuggingVertexShader_Sample";
+export { DebuggingVertexShader_Sample } from "./DebuggingVertexShader/DebuggingVertexShader_Sample";
 
 export default {}
