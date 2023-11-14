@@ -1,3 +1,4 @@
+
 import { BuiltIns, GPURenderer, IndexBuffer, RenderPipeline, Vec4, VertexAttribute } from "xgpu";
 import { MouseControler } from "./MouseControler";
 
@@ -8,6 +9,7 @@ export class MouseToy extends RenderPipeline {
 
     constructor(renderer: GPURenderer, options?: any) {
         super(renderer);
+
         this.initFromObject({
 
             antiAliasing: true,
@@ -23,14 +25,7 @@ export class MouseToy extends RenderPipeline {
                 [+0.5, +0.5]
             ]),
             indexBuffer: new IndexBuffer({ nbPoint: 6, datas: new Uint32Array([0, 1, 2, 1, 3, 2]) }),
-            /*
-            pos: VertexAttribute.Vec2([
-                [0.0, 0.5],
-                [-0.5, -0.5],
-                [0.5, -0.5]
-            ]),
-            */
-            debug: BuiltIns.vertexOutputs.Float,
+
             vertexShader: `
                 var px = 0.05-1.0 + f32(instanceIndex) % grid.x / grid.x * 2.0;
                 var py = 0.05-1.0 + floor(f32(instanceIndex) / grid.x) / grid.y * 2.0;
@@ -42,9 +37,10 @@ export class MouseToy extends RenderPipeline {
                 var dx = px - mouse.x;
                 var dy = py - mouse.y;
                 d *= sqrt(dx*dx + dy*dy) + mouse.wheel*0.5;
-
+               
                 output.position = vec4(px +  cos(a + a2) * d  ,py + sin(a + a2) * d,0.0,1.0);
-                output.debug = 12.0; 
+               
+
             `,
             fragmentShader: `
             if(mouse.down == 1.0){

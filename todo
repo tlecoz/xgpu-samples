@@ -1,0 +1,23 @@
+
+/*
+
+ajoute un panel VerteXBuffer qui affiche les différents VertexBuffer et leur structure de donnée
+
+ajoute un panel UniformBuffer avec la liste d'uniform modifiable (avec des sliders et inputText) 
+|-> créer different panel spécialisé dans certain type de donnée 
+    - les modelViewMatrix -> rappatrier les ModelViewMAtrix dans XGPU
+                          => créer des slider permettant de changer la position/rotationX/rotationY,rotationZ/scale 
+                          => 
+
+    - créer des types RGB / RGBA extends VEc3 / Vec4 => affiche un selecteur de couleur 
+    - slider par cran pour les Int , anologique pour les float 
+    
+
+ajoute un panel "code" qui affiche le shader 
+|-> pouvoir l'editer => tester en direct 
+                     => export to clipboard (le json a passé à initFromObject)
+
+
+
+
+*/

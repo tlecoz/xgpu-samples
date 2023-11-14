@@ -24,7 +24,12 @@ export class Camera extends Matrix4x4 {
 
     constructor(screenW: number, screenH: number, fovInDegree: number, zNear: number = 0.1, zFar: number = 10000) {
 
-        super(new Float32Array(16));
+        super(new Float32Array([
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+        ]));
 
         var h: number = screenH * 0.5;
         var fov: number = Math.PI / 180 * fovInDegree;
