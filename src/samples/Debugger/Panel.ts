@@ -2,7 +2,7 @@ import { UIElement } from "../../ui/UIElement";
 
 export class Panel extends UIElement {
 
-
+    private static instance: Panel;
 
     constructor(w: number, h: number) {
         super("div", {
@@ -23,7 +23,8 @@ export class Panel extends UIElement {
         this.width = w;
         this.height = h;
 
-
+        if (Panel.instance) Panel.instance.destroy();
+        Panel.instance = this;
     }
 
     public init() {
