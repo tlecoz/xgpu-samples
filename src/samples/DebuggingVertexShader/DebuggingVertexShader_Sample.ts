@@ -173,8 +173,7 @@ export class DebuggingVertexShader_Sample extends Sample {
             but you can't use the debug.value in a computation. 
             The keyword "debug" must be the first word of a line.
 
-            In case you have an error with your demo involving debug values defined in 'initFromObject' and used in the vertexShader 
-
+            
             f) For now (I'll try to fix it soon) , it doesn't work with a renderPipeline that use a buffer computed in a ComputePipeline 
             */
 
