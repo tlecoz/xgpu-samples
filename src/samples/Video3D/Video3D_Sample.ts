@@ -1,4 +1,4 @@
-import { BuiltIns, ComputePipeline, Float, GPURenderer, HeadlessGPURenderer, ImageTexture, Matrix4x4, RenderPipeline, TextureSampler, Vec4, VertexAttribute, VertexBufferIO, XGPU } from "xgpu";
+import { BuiltIns, ComputePipeline, Float, GPURenderer, TextureRenderer, ImageTexture, Matrix4x4, RenderPipeline, TextureSampler, Vec4, Vec4Buffer, VertexBufferIO, XGPU } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { TexturedQuad } from "../ComputeTexture/TexturedQuad";
 import { Camera } from "../ColorCube/Camera";
@@ -60,21 +60,28 @@ export class Video3D_Sample extends Sample {
         this.video = await getVideo("../../assets/video.webm")
 
 
-        const headlessRenderer = new HeadlessGPURenderer(true);
-        await headlessRenderer.init(this.video.videoWidth, this.video.videoHeight)
+        const useTextureInComputeShader: boolean = true;
+        const textureRenderer = new TextureRenderer(useTextureInComputeShader);
+        await textureRenderer.init(this.video.videoWidth, this.video.videoHeight)
         const textureSampler: TextureSampler = new TextureSampler();
-        const videoQuad = new TexturedQuad(headlessRenderer, this.video, textureSampler);
-        headlessRenderer.addPipeline(videoQuad);
+        const videoQuad = new TexturedQuad(this.video, textureSampler);
+        textureRenderer.addPipeline(videoQuad);
 
         //-----
 
-        const nb = Math.floor(headlessRenderer.width * headlessRenderer.height);
-        const buffer: VertexBufferIO = new VertexBufferIO({ pixel: VertexAttribute.Vec4() })
+        const nb = Math.floor(textureRenderer.width * textureRenderer.height);
+        const buffer: VertexBufferIO = new VertexBufferIO({ pixel: new Vec4Buffer() })
         buffer.datas = new Float32Array(nb * 4);
 
-        const mouse = new MouseControler(renderer.canvas);
-        const image: ImageTexture = new ImageTexture({ source: headlessRenderer.texture });
-        const screen = new Vec4(headlessRenderer.width, headlessRenderer.height);
+        const mouse = new MouseControler();
+        mouse.initCanvas(renderer.canvas);
+        const image: ImageTexture = new ImageTexture({ source: null });
+
+        videoQuad.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
+            image.source = videoQuad.renderPass.texture;
+        })
+
+        const screen = new Vec4(textureRenderer.width, textureRenderer.height);
         const computePipeline = new ComputePipeline();
         computePipeline.useRenderPipeline = true;
         computePipeline.initFromObject({
@@ -118,7 +125,7 @@ export class Video3D_Sample extends Sample {
 
         const modelMatrix = new Matrix4x4();
         const viewMatrix = new Matrix4x4();
-        const renderPipeline = new RenderPipeline(renderer);
+        const renderPipeline = new RenderPipeline();
         const projection = new Camera(renderer.width, renderer.height, 45, 0.1, 100000);
 
         renderPipeline.initFromObject({
@@ -157,19 +164,19 @@ export class Video3D_Sample extends Sample {
         viewMatrix.scaleX = -1 / (renderer.width / renderer.height)
         viewMatrix.scaleZ = -1;
 
-        renderPipeline.onDrawEnd = () => {
+        renderPipeline.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
 
             const smooth = 0.15;
             modelMatrix.rotationY -= (modelMatrix.rotationY - (mouse.x * Math.PI * 0.35)) * smooth;
             modelMatrix.rotationX -= (modelMatrix.rotationX - (mouse.y * Math.PI * 0.35)) * smooth;
-            modelMatrix.x = -headlessRenderer.width * 0.5;
+            modelMatrix.x = -textureRenderer.width * 0.5;
             modelMatrix.y = -screen.y * 0.5;
             modelMatrix.z = depthMax.x;
             projection.z = -1500;
 
-            headlessRenderer.update();
+            textureRenderer.update();
             computePipeline.nextFrame();
-        }
+        });
 
     }
 

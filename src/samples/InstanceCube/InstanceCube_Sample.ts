@@ -1,4 +1,4 @@
-import { BuiltIns, GPURenderer, Matrix4x4Array } from "xgpu";
+import { BuiltIns, GPURenderer, Matrix4x4Array, RenderPipeline } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { Cube } from "../ColorCube/Cube";
 import { ModelViewMatrix } from "./ModelViewMatrix";
@@ -28,7 +28,7 @@ export class InstanceCube_Sample extends Sample {
         this.matrixs = new Matrix4x4Array(modelViewArr)
 
 
-        const cube = new Cube(renderer, {
+        const cube = new Cube({
             instanceCount: 16,
             matrixs: this.matrixs,
             instanceId: BuiltIns.vertexInputs.instanceIndex,
@@ -38,10 +38,10 @@ export class InstanceCube_Sample extends Sample {
         output.fragPosition = 0.5 * (position + vec4<f32>(1.0));
         `
 
-        const transform = cube.transform;
+        const transform: ModelViewMatrix = cube.resources.transform;
         transform.scaleX = transform.scaleY = transform.scaleZ = renderer.width / 512;
 
-        cube.onDrawBegin = () => {
+        cube.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             let m: ModelViewMatrix;
             for (let i = 0; i < 16; i++) {
                 m = this.matrixs.matrixs[i] as ModelViewMatrix;
@@ -53,7 +53,7 @@ export class InstanceCube_Sample extends Sample {
             transform.rotationX += 0.01;
             transform.rotationY += 0.01;
             transform.rotationZ += 0.01;
-        }
+        });
 
         renderer.addPipeline(cube);
 

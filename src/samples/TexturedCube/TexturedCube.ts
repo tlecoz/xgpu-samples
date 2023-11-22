@@ -1,11 +1,11 @@
-import { GPURenderer, TextureSampler, ImageTexture, BuiltIns, VertexAttribute } from "xgpu";
+import { TextureSampler, ImageTexture, BuiltIns, VertexAttribute } from "xgpu";
 import { Cube } from "../ColorCube/Cube";
 import { cubeUVOffset } from "../../meshes/CubeMesh";
 
 export class TexturedCube extends Cube {
 
-    constructor(rennderer: GPURenderer, image: ImageBitmap | GPUTexture, options?: any) {
-        super(rennderer, {
+    constructor(image: ImageBitmap | GPUTexture, options?: any) {
+        super({
             imageSampler: new TextureSampler(),
             image: new ImageTexture({ source: image }),
             fragUV: BuiltIns.vertexOutputs.Vec2,

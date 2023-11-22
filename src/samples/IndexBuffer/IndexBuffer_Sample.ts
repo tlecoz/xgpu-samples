@@ -1,4 +1,4 @@
-import { GPURenderer, VertexBuffer, VertexAttribute, IndexBuffer, BuiltIns, RenderPipeline } from "xgpu";
+import { GPURenderer, VertexBuffer, IndexBuffer, BuiltIns, RenderPipeline, Vec2Buffer } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 
 
@@ -9,7 +9,7 @@ export class IndexBuffer_Sample extends Sample {
 
 
         const buffer = new VertexBuffer({
-            position: VertexAttribute.Vec2([
+            position: new Vec2Buffer([
                 -1, -1,
                 +1, -1,
                 -1, +1,
@@ -22,7 +22,7 @@ export class IndexBuffer_Sample extends Sample {
         const indexBuffer = new IndexBuffer({ nbPoint: indices.length })
         indexBuffer.datas = indices;
 
-        const pipeline = new RenderPipeline(renderer);
+        const pipeline = new RenderPipeline();
         pipeline.initFromObject({
             buffer,
             indexBuffer,

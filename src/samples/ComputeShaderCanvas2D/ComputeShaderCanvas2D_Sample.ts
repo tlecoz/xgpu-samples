@@ -1,4 +1,4 @@
-import { BuiltIns, ComputePipeline, Vec2, VertexAttribute, VertexBufferIO, XGPU } from "xgpu";
+import { BuiltIns, ComputePipeline, FloatBuffer, Vec2, Vec2Buffer, VertexBufferIO, XGPU } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 
 export class ComputeShaderCanvas2D_Sample extends Sample {
@@ -17,23 +17,15 @@ export class ComputeShaderCanvas2D_Sample extends Sample {
         const h = ctx.canvas.height;
         const nbParticle = 200;
 
-
-
-
-
-
-
-
-
         const pipeline = new ComputePipeline();
         pipeline.debug = "ComputeShaderCanvas2D_Sample"
 
         const resources = pipeline.initFromObject({
             particles: new VertexBufferIO({
-                radius: VertexAttribute.Float(),
-                life: VertexAttribute.Float(),
-                position: VertexAttribute.Vec2(),
-                speed: VertexAttribute.Vec2(),
+                radius: new FloatBuffer(),
+                life: new FloatBuffer(),
+                position: new Vec2Buffer(),
+                speed: new Vec2Buffer(),
             }),
 
             screen: new Vec2(ctx.canvas.width, ctx.canvas.height),

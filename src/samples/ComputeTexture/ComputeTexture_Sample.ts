@@ -1,4 +1,4 @@
-import { BuiltIns, ComputePipeline, Float, GPURenderer, ImageTextureIO, TextureSampler } from "xgpu";
+import { BuiltIns, ComputePipeline, Float, GPURenderer, ImageTextureIO, RenderPipeline, TextureSampler } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { TexturedQuad } from "./TexturedQuad";
 
@@ -69,15 +69,15 @@ export class ComputeTexture_Sample extends Sample {
 
 
 
-        const renderPipeline = new TexturedQuad(renderer, image, textureSampler);
+        const renderPipeline = new TexturedQuad(image, textureSampler);
         renderer.addPipeline(renderPipeline);
 
 
         let now = new Date().getTime();
-        renderPipeline.onDrawEnd = () => {
+        renderPipeline.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             time.x = (new Date().getTime() - now) / 1000;
             computePipeline.nextFrame();
-        }
+        })
 
     }
 }

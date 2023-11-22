@@ -1,4 +1,4 @@
-import { Bindgroup, BuiltIns, GPURenderer, ImageTexture, IndexBuffer, Matrix4x4, RenderPipeline, TextureSampler, VertexAttribute } from "xgpu";
+import { Bindgroup, BuiltIns, GPURenderer, ImageTexture, IndexBuffer, Matrix4x4, RenderPipeline, TextureSampler, Vec2Buffer } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 import { Camera } from "../ColorCube/Camera";
@@ -36,7 +36,7 @@ export class PolygonInstances_Sample extends Sample {
             matrix.y = posy;
 
             return {
-                position: VertexAttribute.Vec2(pos),
+                position: new Vec2Buffer(pos),
                 matrix,
                 indexBuffer: new IndexBuffer({ nbPoint: indices.length, datas: new Uint32Array(indices) }),
                 img: new ImageTexture({ source: createCanvas(nbSide) }),
@@ -50,7 +50,7 @@ export class PolygonInstances_Sample extends Sample {
         }
         const polygonBindgroup = new Bindgroup(polygons);
 
-        const pipeline = new RenderPipeline(renderer);
+        const pipeline = new RenderPipeline();
         pipeline.initFromObject({
             polygonBindgroup,
             camera: new Camera(renderer.width, renderer.height, 45),
@@ -64,7 +64,7 @@ export class PolygonInstances_Sample extends Sample {
             `
         })
 
-        pipeline.onDrawEnd = () => {
+        pipeline.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             let matrix: Matrix4x4;
             let speed: number;
             for (let i = 0; i < polygons.length; i++) {
@@ -74,7 +74,7 @@ export class PolygonInstances_Sample extends Sample {
                 matrix.rotationY += speed;
                 matrix.rotationZ += speed;
             }
-        }
+        })
         renderer.addPipeline(pipeline);
     }
 }

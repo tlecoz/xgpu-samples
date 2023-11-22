@@ -1,4 +1,4 @@
-import { VertexBuffer, VertexAttribute } from "xgpu";
+import { VertexBuffer, FloatBuffer } from "xgpu";
 import { SoundSpectrum } from "./SoundSpectrum";
 
 export class SoundSpectrumBuffer extends VertexBuffer {
@@ -8,7 +8,7 @@ export class SoundSpectrumBuffer extends VertexBuffer {
 
     constructor(attributeName: string, nbValue: number) {
         const o: any = {};
-        o[attributeName] = VertexAttribute.Float()
+        o[attributeName] = new FloatBuffer();
         super(o, { stepMode: "instance", datas: new Float32Array(nbValue) })
     }
 

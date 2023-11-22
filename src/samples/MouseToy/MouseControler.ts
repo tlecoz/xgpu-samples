@@ -2,12 +2,16 @@ import { Vec4 } from "xgpu";
 
 export class MouseControler extends Vec4 {
 
-    constructor(canvas: HTMLCanvasElement | any) {
+    constructor(canvas?: HTMLCanvasElement | any) {
         super(0, 0, 0, 0);
         this.initStruct(["x", "y", "down", "wheel"]);
 
-        document.body.addEventListener("mousemove", (e) => {
+        if (canvas) this.initCanvas(canvas);
 
+    }
+
+    public initCanvas(canvas: HTMLCanvasElement | any) {
+        document.body.addEventListener("mousemove", (e) => {
             const r = canvas.getBoundingClientRect();
             const px = e.clientX - r.x;
             const py = e.clientY - r.y;
@@ -23,6 +27,7 @@ export class MouseControler extends Vec4 {
 
         })
     }
+
 
     public get down(): boolean { return this.z === 1 }
     public set down(b: boolean) {

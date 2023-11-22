@@ -1,5 +1,5 @@
 
-import { BuiltIns, GPURenderer, IndexBuffer, Matrix4x4Array, RenderPipeline, VertexAttribute } from "xgpu";
+import { BuiltIns, GPURenderer, IndexBuffer, Matrix4x4Array, RenderPipeline, Vec2Buffer } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { Camera } from "../ColorCube/Camera";
 import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
@@ -28,10 +28,10 @@ export class DebuggingVertexShader_Sample extends Sample {
             }
         }
 
-        const pipeline: RenderPipeline = new RenderPipeline(renderer, { r: 0, g: 0, b: 0, a: 1 });
+        const pipeline: RenderPipeline = new RenderPipeline({ r: 0, g: 0, b: 0, a: 1 });
         pipeline.initFromObject({
 
-            position: VertexAttribute.Vec2([
+            position: new Vec2Buffer([
                 -0.5, -0.5,
                 +0.5, -0.5,
                 -0.5, +0.5,
@@ -73,12 +73,19 @@ export class DebuggingVertexShader_Sample extends Sample {
             `,
         })
 
-        pipeline.onDrawBegin = () => {
+        pipeline.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             matrixArrays[0].rotationZ += 0.01;
             matrixArrays[4].scaleX = Math.sin(new Date().getTime() * 0.001) * 150;
-        }
+        })
 
-        pipeline.onLog = (o: any) => { showLogs(o); }
+        pipeline.addEventListener(RenderPipeline.ON_LOG, (pipeline: RenderPipeline, data: any) => {
+            //@ts-ignore
+            pipeline;
+
+
+            showLogs(data);
+        });
+
         renderer.addPipeline(pipeline);
 
         /*

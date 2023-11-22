@@ -1,5 +1,6 @@
 
 
+
 export { HelloTriangle_Sample } from "./HelloTriangle/HelloTriangle_Sample";
 export { ColorCube_Sample } from "./ColorCube/ColorCube_Sample";
 export { TexturedCube_Sample } from "./TexturedCube/TexturedCube_Sample";
@@ -16,7 +17,7 @@ export { TonsOfCubes_Sample } from "./TonsOfCubes/TonsOfCubes_Sample";
 export { ComputeShaderCanvas2D_Sample } from "./ComputeShaderCanvas2D/ComputeShaderCanvas2D_Sample";
 export { ComputeTexture_Sample } from "./ComputeTexture/ComputeTexture_Sample";
 export { Video3D_Sample } from "./Video3D/Video3D_Sample";
-export { Ribbon_Sample } from "./Ribbon/Ribbon_Sample";
+export { Pencil_Sample } from "./Pencil/Pencil_Sample";
 export { IndexBuffer_Sample } from "./IndexBuffer/IndexBuffer_Sample";
 export { TwoCubes_Sample } from "./TwoCubes/TwoCubes_Sample";
 export { TestAlignment_Sample } from "./TestAlignment/TestAlignment_Sample";

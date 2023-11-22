@@ -18,7 +18,7 @@ export class CodeElement {
             flexDirection: "column"
         })
 
-        console.log("getObjectDiv ", objStr)
+        console.warn("getObjectDiv ", objStr)
 
         let temp;
         let nbCurvedBracketOpen = 0;
@@ -396,6 +396,8 @@ export class CodeElement {
             display: "flex",
         });
 
+        console.log("GET PROPERTY DIV : ", info)
+
         div.appendChild(new UIElement("span", this.visibilityStyle)).innerText = visibility;
 
         if (info.get || info.set) {
@@ -413,13 +415,22 @@ export class CodeElement {
             div.appendChild(this.getTypeDiv(info.type, true));
         } else {
             if (info.rawText.indexOf("=") != -1) {
-                end = info.rawText.split("=")[1];
 
-                let t2 = end.split("&");
-                for (let k = 0; k < t2.length; k++) {
-                    if (k != 0) div.appendChild(new UIElement("span", this.dotStyle)).innerText = "&"
-                    div.appendChild(this.getObjectDiv(end.split(",").join(";"), true));
+                if (info.rawText.indexOf("=>") != -1) {
+
+                    div.appendChild(this.getObjectDiv(info.rawText, true));
+
+                } else {
+                    end = info.rawText.split("=")[1];
+
+                    let t2 = end.split("&");
+                    for (let k = 0; k < t2.length; k++) {
+                        if (k != 0) div.appendChild(new UIElement("span", this.dotStyle)).innerText = "&"
+                        div.appendChild(this.getObjectDiv(end.split(",").join(";"), true));
+                    }
                 }
+
+
 
 
             } else {

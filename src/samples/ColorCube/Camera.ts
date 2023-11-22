@@ -22,7 +22,7 @@ export class Camera extends Matrix4x4 {
     protected _projectionMatrix: Matrix4x4;
     protected mustUpdateMatrix: boolean = true;
 
-    constructor(screenW: number, screenH: number, fovInDegree: number, zNear: number = 0.1, zFar: number = 10000) {
+    constructor(screenW: number = 1, screenH: number = 1, fovInDegree: number = 45, zNear: number = 0.1, zFar: number = 10000) {
 
         super(new Float32Array([
             1, 0, 0, 0,

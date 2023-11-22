@@ -1,4 +1,4 @@
-//import { Documentation } from "../documentation/Documentation";
+import { Documentation } from "../documentation/Documentation";
 //import { Tutorials } from "../tutorials/Tutorials";
 import appConfig from "./appConfig.json"
 import { Footer } from "./Footer";
@@ -44,7 +44,7 @@ export class App extends UIElement {
             const header = this.appendChild(new Header()) as Header;
 
             const sampleContainer = new SampleContainer();
-            //const documentation = new Documentation();
+            const documentation = new Documentation();
             //const tutorials = new Tutorials();
 
             const footer = new Footer();
@@ -80,7 +80,7 @@ export class App extends UIElement {
                 if (pageName != App.page) {
                     if (pageName === appConfig.pages.Documentation) name = "BuiltIns";
                     else if (pageName === appConfig.pages.Samples) name = "HelloTriangle";
-                    else if (pageName === appConfig.pages.Tutorials) name = "AAAAAAAAAAAAAAAAAA"
+                    //else if (pageName === appConfig.pages.Tutorials) name = "AAAAAAAAAAAAAAAAAA"
                 }
 
                 //console.log("footer.display = ", footer.style.display)
@@ -95,13 +95,13 @@ export class App extends UIElement {
 
 
 
-                /*if (pageName === appConfig.pages.Documentation) {
+                if (pageName === appConfig.pages.Documentation) {
                     current = documentation
 
                     history.pushState(null, '', window.location.origin + "/documentation/" + name);
                     window.dispatchEvent(new PopStateEvent("popstate", { state: null }));
                     this.appendChild(documentation);
-                } else*/ if (pageName == appConfig.pages.Samples) {
+                } else if (pageName == appConfig.pages.Samples) {
 
 
 

@@ -1,4 +1,4 @@
-import { RenderPipeline, VertexAttribute, Matrix4x4, TextureSampler, BuiltIns } from "xgpu";
+import { RenderPipeline, Matrix4x4, TextureSampler, BuiltIns, Vec3Buffer } from "xgpu";
 import { LightPlugin } from "../Light/LightPlugin";
 import { ShadowPipeline } from "./ShadowPipeline";
 
@@ -8,15 +8,15 @@ export class LightShadowPlugin extends LightPlugin {
     //This class create a plugin that handle shadow & light to an external renderPipeline that contains some required resources
 
     constructor(target: RenderPipeline, required: {
-        position: VertexAttribute,
-        normal: VertexAttribute,
+        position: Vec3Buffer,
+        normal: Vec3Buffer,
         cameraMatrix: Matrix4x4,
         modelMatrix: Matrix4x4
     }, depthTextureSize: number = 1024) {
 
         super(target, required);
 
-        const shadow = new ShadowPipeline(target, {
+        const shadow = new ShadowPipeline({
             indexBuffer: target.drawConfig.indexBuffer,
             position: required.position,
             model: required.modelMatrix,

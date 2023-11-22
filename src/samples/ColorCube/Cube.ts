@@ -1,19 +1,19 @@
-import { BuiltIns, RenderPipeline, VertexAttribute } from "xgpu";
+import { BuiltIns, RenderPipeline, Vec4Buffer, VertexAttribute } from "xgpu";
 import { cubeVertexArray, cubeVertexSize, cubePositionOffset } from "../../meshes/CubeMesh";
 import { Camera } from "./Camera";
 import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 
 export class Cube extends RenderPipeline {
 
-    constructor(renderer, options?: any) {
-        super(renderer);
-        this.initFromObject({
+    constructor(options?: any) {
+        super();
+        const resources = this.initFromObject({
             cullMode: "back",
             depthTest: true,
             antiAliasing: true,
-            position: VertexAttribute.Vec4(cubePositionOffset),
+            position: new Vec4Buffer(cubePositionOffset),
             transform: new ModelViewMatrix(),
-            camera: new Camera(this.renderer.width, this.renderer.height, 30),
+            camera: new Camera(),
             fragPosition: BuiltIns.vertexOutputs.Vec4,
             vertexShader: `
             output.position = camera * transform * position;
@@ -23,12 +23,17 @@ export class Cube extends RenderPipeline {
             ...options
         });
 
-        (this.resources.position as VertexAttribute).vertexBuffer.setComplexDatas(cubeVertexArray, cubeVertexSize);
 
+        (resources.position as VertexAttribute).vertexBuffer.setComplexDatas(cubeVertexArray, cubeVertexSize);
 
+        const removeListenerAfterDistpatch: boolean = true;
+        this.addEventListener(RenderPipeline.ON_ADDED_TO_RENDERER, () => {
+            const camera: Camera = resources.camera as Camera;
+            camera.screenW = this.renderer.width;
+            camera.screenH = this.renderer.height;
+        }, removeListenerAfterDistpatch)
     }
 
-    public get camera(): Camera { return this.resources.camera; }
-    public get transform(): ModelViewMatrix { return this.resources.transform; }
+
 
 }

@@ -1,6 +1,7 @@
-import { GPURenderer } from "xgpu";
+import { GPURenderer, RenderPipeline } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { CubeMap } from "./CubeMap";
+import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 
 export class CubeMap_Sample extends Sample {
 
@@ -28,15 +29,14 @@ export class CubeMap_Sample extends Sample {
             "../../assets/cube/negz.jpg",
         ])
 
-        const cube = new CubeMap(renderer, sides);
-        renderer.addPipeline(cube);
 
         let now = new Date().getTime();
-        cube.onDrawEnd = () => {
+        renderer.addPipeline(new CubeMap(sides)).addEventListener(RenderPipeline.ON_DRAW_BEGIN, (pipeline: RenderPipeline) => {
             let time = (new Date().getTime() - now) / 1000;
-            cube.transform.scaleX = cube.transform.scaleY = cube.transform.scaleZ = 10000 * Math.max(window.innerWidth, window.innerHeight) / 512;;
-            cube.transform.rotationY = Math.sin(time * 0.15 + 1) * Math.PI;
-            cube.transform.rotationX = -0.15 + Math.cos(time * 0.4) * Math.PI * 0.1;
-        }
+            const { transform }: { transform: ModelViewMatrix } = pipeline.resources;
+            transform.scaleX = transform.scaleY = transform.scaleZ = 10000 * Math.max(pipeline.renderer.width, pipeline.renderer.height) / 512;
+            transform.rotationY = Math.sin(time * 0.15 + 1) * Math.PI;
+            transform.rotationX = -0.15 + Math.cos(time * 0.4) * Math.PI * 0.1;
+        })
     }
 }

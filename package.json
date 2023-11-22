@@ -23,10 +23,10 @@
     "@codemirror/lang-javascript": "^6.1.9",
     "@codemirror/state": "^6.2.1",
     "@codemirror/view": "^6.15.3",
-    "@webgpu/types": "^0.1.32",
+    "@webgpu/types": "^0.1.39",
     "codemirror-minified": "^5.65.9",
     "gl-matrix": "^3.4.3",
     "stanford-dragon": "^1.1.1",
-    "xgpu": "^0.9.1"
+    "xgpu": "file:../xgpu"
   }
 }

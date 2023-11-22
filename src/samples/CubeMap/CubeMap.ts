@@ -1,10 +1,10 @@
-import { GPURenderer, CubeMapTexture, TextureSampler } from "xgpu";
+import { CubeMapTexture, TextureSampler } from "xgpu";
 import { Cube } from "../ColorCube/Cube";
 
 export class CubeMap extends Cube {
 
-    constructor(renderer: GPURenderer, sides: ImageBitmap[]) {
-        super(renderer, {
+    constructor(sides: ImageBitmap[]) {
+        super({
             cullMode: "front",
             textureSampler: new TextureSampler(),
             cubeMap: new CubeMapTexture({
@@ -18,6 +18,6 @@ export class CubeMap extends Cube {
         })
 
 
-        this.camera.zFar = 100000;
+        this.resources.camera.zFar = 100000;
     }
 } 

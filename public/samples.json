@@ -129,10 +129,10 @@
             ]
         },
         {
-            "name": "Ribbon",
+            "name": "Pencil",
             "files": [
-                "Ribbon_Sample.ts",
-                "Ribbon.ts"
+                "Pencil_Sample.ts",
+                "Pencil.ts"
             ]
         },
         {

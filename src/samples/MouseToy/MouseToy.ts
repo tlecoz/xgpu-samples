@@ -1,5 +1,5 @@
 
-import { BuiltIns, GPURenderer, IndexBuffer, RenderPipeline, Vec4, VertexAttribute } from "xgpu";
+import { BuiltIns, IndexBuffer, RenderPipeline, Vec2Buffer, Vec4 } from "xgpu";
 import { MouseControler } from "./MouseControler";
 
 
@@ -7,8 +7,8 @@ export class MouseToy extends RenderPipeline {
 
     public grid: Vec4 = new Vec4(32, 32, 0.05, 1);
 
-    constructor(renderer: GPURenderer, options?: any) {
-        super(renderer);
+    constructor(options?: any) {
+        super();
 
         this.initFromObject({
 
@@ -16,9 +16,9 @@ export class MouseToy extends RenderPipeline {
             instanceCount: this.grid.x * this.grid.y,
             instanceIndex: BuiltIns.vertexInputs.instanceIndex,
             grid: this.grid,
-            mouse: new MouseControler(renderer.canvas),
+            mouse: new MouseControler(),
 
-            pos: VertexAttribute.Vec2([
+            pos: new Vec2Buffer([
                 [-0.5, -0.5],
                 [+0.5, -0.5],
                 [-0.5, +0.5],
@@ -50,6 +50,10 @@ export class MouseToy extends RenderPipeline {
             }
             `,
             ...options
+        })
+
+        this.addEventListener(RenderPipeline.ON_ADDED_TO_RENDERER, () => {
+            (this.resources.mouse as MouseControler).initCanvas(this.renderer.canvas)
         })
     }
 

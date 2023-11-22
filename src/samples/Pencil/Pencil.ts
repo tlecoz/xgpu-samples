@@ -1,13 +1,13 @@
-import { Float, GPURenderer, IndexBuffer, Matrix4x4, RenderPipeline, Vec2, VertexAttribute, VertexBuffer } from "xgpu";
+import { Float, GPURenderer, IndexBuffer, Matrix4x4, RenderPipeline, Vec2, Vec3Buffer, VertexBuffer } from "xgpu";
 import { MouseControler } from "../MouseToy/MouseControler";
 import { Camera } from "../ColorCube/Camera";
 
-export class Ribbon extends RenderPipeline {
+export class Pencil extends RenderPipeline {
 
 
 
     constructor(renderer: GPURenderer) {
-        super(renderer);
+        super();
 
 
         const nbSegmentMax: number = 1000
@@ -21,12 +21,18 @@ export class Ribbon extends RenderPipeline {
 
         let vertexData = new Float32Array(nbSegmentMax * 3 * 2);
         const vertexBuffer = new VertexBuffer({
-            position: VertexAttribute.Vec3()
+            position: new Vec3Buffer()
+            //position: VertexAttribute.Vec3()
         });
         vertexBuffer.datas = vertexData;
 
         const screen = new Vec2(renderer.width, renderer.height)
-        const camera = new Camera(renderer.width, renderer.height, 60, 0.1, 100000)
+        const camera = new Camera(renderer.width, renderer.height, 60, 0.1, 100000);
+
+
+
+
+
         const model = new Matrix4x4();
         model.scaleX = -1;
         const w = renderer.width * 0.5;
@@ -58,7 +64,7 @@ export class Ribbon extends RenderPipeline {
         indexBuffer.nbPoint = 0;
 
 
-        let thickness: number = 10 / screen.x;
+        let thickness: number = 10000 / screen.x;
 
         const addSegmentIndex = () => {
 
@@ -151,7 +157,7 @@ export class Ribbon extends RenderPipeline {
 
 
 
-        this.onDrawBegin = () => {
+        this.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
 
             time.x = (new Date().getTime() - now) / 10000;
             //camera.x = mouse.x * screen.x;
@@ -174,12 +180,6 @@ export class Ribbon extends RenderPipeline {
                 return
             }
 
-
-
-
-
-
-
             if (!started) {
                 started = true;
                 startPath(-oldX, oldY, -mouse.x, mouse.y);
@@ -190,7 +190,7 @@ export class Ribbon extends RenderPipeline {
             const dx = mouse.x - oldX;
             const dy = mouse.y - oldY;
             const a = Math.atan2(dy, dx);
-            thickness = Math.sqrt(dx * dx + dy * dy) * 0.05;
+            thickness = Math.sqrt(dx * dx + dy * dy) * 0.025;
 
             addSegment(-mouse.x, mouse.y, a);
 
@@ -198,7 +198,7 @@ export class Ribbon extends RenderPipeline {
 
 
 
-        }
+        });
     }
 
 

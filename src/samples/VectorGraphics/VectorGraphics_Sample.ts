@@ -1,5 +1,5 @@
 
-import { GPURenderer } from "xgpu";
+import { GPURenderer, RenderPipeline } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { GraphicPipeline } from "./GraphicPipeline";
 import { Graphics } from "./Graphics";
@@ -43,7 +43,7 @@ export class VectorGraphics_Sample extends Sample {
         graphicPipeline.setGraphicById(0);
 
 
-        graphicPipeline.onDrawBegin = () => {
+        graphicPipeline.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
 
             const { transform } = graphicPipeline.resources;
 
@@ -52,7 +52,7 @@ export class VectorGraphics_Sample extends Sample {
             transform.rotationX += 0.01;
             transform.rotationY += 0.01;
             transform.rotationZ += 0.01;
-        }
+        })
 
 
         renderer.addPipeline(graphicPipeline);

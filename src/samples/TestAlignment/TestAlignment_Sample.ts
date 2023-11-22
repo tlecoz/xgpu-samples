@@ -55,7 +55,7 @@ export class TestAlignment_Sample extends Sample {
 
 
 
-        const pipeline = new RenderPipeline(renderer);
+        const pipeline = new RenderPipeline();
         pipeline.initFromObject({
 
             col: new IVec4Array([
@@ -120,7 +120,7 @@ export class TestAlignment_Sample extends Sample {
         var myGroup = new UniformGroup(o);
 
 
-        const pipeline = new RenderPipeline(renderer);
+        const pipeline = new RenderPipeline();
         pipeline.initFromObject({
 
             myGroup,
@@ -199,7 +199,7 @@ export class TestAlignment_Sample extends Sample {
             size: [bmp1.width, bmp1.height, 2]
         })
 
-        const pipeline = new RenderPipeline(renderer);
+        const pipeline = new RenderPipeline();
         pipeline.initFromObject({
             //obj,
             //myGroup,

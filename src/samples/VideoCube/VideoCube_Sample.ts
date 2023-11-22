@@ -1,6 +1,7 @@
-import { GPURenderer } from "xgpu";
+import { GPURenderer, RenderPipeline } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { VideoCube } from "./VideoCube";
+import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 
 export class VideoCube_Sample extends Sample {
 
@@ -17,15 +18,15 @@ export class VideoCube_Sample extends Sample {
 
         const video = await getVideo("../../assets/video.webm")
 
-        const cube = new VideoCube(renderer, video);
-        const transform = cube.transform;
+        const cube = new VideoCube(video);
+        const transform: ModelViewMatrix = cube.resources.transform;
 
         transform.scaleX = transform.scaleY = transform.scaleZ = 150;
-        cube.onDrawBegin = () => {
+        cube.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             transform.rotationX += 0.01;
             transform.rotationY += 0.01;
             transform.rotationZ += 0.01;
-        }
+        });
         renderer.addPipeline(cube)
     }
 }

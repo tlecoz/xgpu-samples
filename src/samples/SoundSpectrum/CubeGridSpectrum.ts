@@ -1,11 +1,11 @@
-import { BuiltIns, Float, GPURenderer, ImageTexture, TextureSampler } from "xgpu";
+import { BuiltIns, Float, ImageTexture, TextureSampler } from "xgpu";
 import { Cube } from "../ColorCube/Cube";
 import { SoundSpectrumBuffer } from "./SoundSpectrumBuffer";
 
 export class CubeGridSpectrum extends Cube {
 
 
-    constructor(renderer: GPURenderer, image: ImageBitmap) {
+    constructor(image: ImageBitmap) {
 
         const gridSize: number = 32;
         const spectrumBuffer = new SoundSpectrumBuffer("amplitude", gridSize * gridSize);
@@ -14,7 +14,7 @@ export class CubeGridSpectrum extends Cube {
             spectrumBuffer.play();
         })
 
-        super(renderer, {
+        super({
             cullMode: "back",
             instanceCount: spectrumBuffer.length,
             gridSize: new Float(gridSize),
@@ -55,7 +55,7 @@ export class CubeGridSpectrum extends Cube {
                 output.fragUV += vec2(px,py);
 
                 //cheap light effect 
-                output.dist = 3.0-distance(vec4(px*size,py*size,depthMax,1.0), vec4(-size*0.25,0.0,size,1.0))/(size *  ${(renderer.width / 512).toFixed(2)})*3.7;
+                output.dist = 3.0-distance(vec4(px*size,py*size,depthMax,1.0), vec4(-size*0.25,0.0,size,1.0))/(size*1.5 )*3.5;
                
             `}
             , fragmentShader: `output.color = vec4( textureSample(image, textureSampler, fragUV).rgb * dist   , 1.0);`

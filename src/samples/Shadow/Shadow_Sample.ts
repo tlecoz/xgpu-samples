@@ -1,4 +1,4 @@
-import { GPURenderer } from "xgpu";
+import { GPURenderer, RenderPipeline } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { Dragon } from "../Light/Dragon";
 import { LightShadowPlugin } from "./LightShadowPlugin";
@@ -12,7 +12,7 @@ export class Shadow_Sample extends Sample {
         if (this.started) return;
         this.started = true;
 
-        const dragon = new Dragon(renderer);
+        const dragon = new Dragon();
         dragon.debug = "dragon";
 
         dragon.model.scaleXYZ = 600;
@@ -30,14 +30,14 @@ export class Shadow_Sample extends Sample {
 
         const now = new Date().getTime();
         dragon.camera.eyePosition.y = renderer.canvas.height * 0.4;
-        dragon.onDrawBegin = () => {
+        dragon.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             const time = (new Date().getTime() - now) / 1000;
             dragon.camera.rotationY += 0.01;
 
             light.r = Math.abs(Math.sin(time))
             light.g = Math.abs(Math.cos(1 + time * 0.66))
             light.b = Math.abs(Math.sin(2 + time * 0.33))
-        }
+        });
     }
 
 }

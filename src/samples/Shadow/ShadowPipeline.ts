@@ -1,14 +1,14 @@
-import { RenderPipeline, IndexBuffer, VertexAttribute, Matrix4x4 } from "xgpu";
+import { RenderPipeline, IndexBuffer, Matrix4x4, Vec3Buffer } from "xgpu";
 
 export class ShadowPipeline extends RenderPipeline {
 
-    constructor(lightPipeline: RenderPipeline, required: {
+    constructor(required: {
         indexBuffer: IndexBuffer,
-        position: VertexAttribute,
+        position: Vec3Buffer,
         model: Matrix4x4,
         lightProjection: Matrix4x4,
     }, depthTextureSize: number = 1024) {
-        super(lightPipeline.renderer, null);
+        super(null);
 
         const resources: any = { indexBuffer: required.indexBuffer };
 

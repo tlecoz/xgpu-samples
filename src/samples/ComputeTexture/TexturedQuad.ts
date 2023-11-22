@@ -1,12 +1,12 @@
-import { BuiltIns, GPURenderer, HeadlessGPURenderer, ImageTexture, ImageTextureIO, RenderPipeline, TextureSampler, VideoTexture } from "xgpu";
+import { BuiltIns, ImageTexture, ImageTextureIO, RenderPipeline, TextureSampler, VideoTexture } from "xgpu";
 
 export class TexturedQuad extends RenderPipeline {
 
     public image: ImageTexture | ImageTextureIO | VideoTexture;
     public sampler: TextureSampler;
 
-    constructor(renderer: GPURenderer | HeadlessGPURenderer, source: ImageBitmap | HTMLVideoElement | GPUTexture | ImageTexture | ImageTextureIO | VideoTexture, textureSampler?: TextureSampler, options?: any) {
-        super(renderer);
+    constructor(source: ImageBitmap | HTMLVideoElement | GPUTexture | ImageTexture | ImageTextureIO | VideoTexture, textureSampler?: TextureSampler, options?: any) {
+        super();
 
         let image: ImageTexture | ImageTextureIO | VideoTexture = source as any;
         let textureSampleFunc: string = "textureSample";

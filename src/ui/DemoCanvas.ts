@@ -61,8 +61,11 @@ export class DemoCanvas extends UIElement {
         document.body.addEventListener("click", () => {
             if (!this.firstClickDone) {
                 this.firstClickDone = true;
-                this.clickLabel.visible = false;
-                if (this.sampleName) this.launchDemo(this.sampleName)
+                if (this.clickLabel.visible) {
+                    this.clickLabel.visible = false;
+                    if (this.sampleName) this.launchDemo(this.sampleName)
+                }
+
             }
         })
         window.addEventListener("popstate", () => {
@@ -81,7 +84,7 @@ export class DemoCanvas extends UIElement {
     }
 
     public launchDemo(fileName: string) {
-
+        console.log("launchDemo ", fileName)
         this.sampleName = fileName;
         fileName += "_Sample";
         const launch = () => {

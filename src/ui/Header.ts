@@ -23,7 +23,7 @@ export class Header extends UIElement {
         })
 
         this.createXgpuButton();
-        this.createButtons([appConfig.pages.Samples, appConfig.pages.Tutorials, appConfig.pages.Documentation])
+        this.createButtons([appConfig.pages.Samples, appConfig.pages.Documentation])
 
     }
 

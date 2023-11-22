@@ -5,7 +5,6 @@
     "FOOTER_HEIGHT": 64,
     "pages": {
         "Samples": "Samples",
-        "Tutorials": "Tutorials",
         "Documentation": "Documentation"
     }
 }

@@ -1,6 +1,7 @@
-import { GPURenderer } from "xgpu";
+import { GPURenderer, RenderPipeline } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 import { TexturedCube } from "./TexturedCube";
+import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 
 
 export class TexturedCube_Sample extends Sample {
@@ -17,14 +18,14 @@ export class TexturedCube_Sample extends Sample {
         const image: ImageBitmap = await getImageBitmap("../../../public/assets/leaf.png");
 
 
-        const cube = new TexturedCube(renderer, image);
-        const transform = cube.transform;
+        const cube = new TexturedCube(image);
+        const transform: ModelViewMatrix = cube.resources.transform;
         transform.scaleX = transform.scaleY = transform.scaleZ = 150;
-        cube.onDrawBegin = () => {
+        cube.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             transform.rotationX += 0.01;
             transform.rotationY += 0.01;
             transform.rotationZ += 0.01;
-        }
+        })
         renderer.addPipeline(cube)
     }
 }

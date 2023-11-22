@@ -1,4 +1,4 @@
-import { AlphaBlendMode, BuiltIns, Float, GPURenderer, HeadlessGPURenderer, IndexBuffer, RenderPipeline, Vec2, Vec3, VertexAttribute, VertexBuffer } from "xgpu";
+import { AlphaBlendMode, BuiltIns, Float, GPURenderer, IndexBuffer, RenderPipeline, Vec2, Vec3, Vec3Buffer, Vec4Buffer, VertexBuffer } from "xgpu";
 import { ModelViewMatrix } from "../InstanceCube/ModelViewMatrix";
 import { Camera } from "../ColorCube/Camera";
 import { Graphics } from "./Graphics";
@@ -17,8 +17,8 @@ export class GraphicPipeline extends RenderPipeline {
     private dirty: boolean = false;
     private nbTriangleMax: number = 0;
 
-    constructor(renderer: GPURenderer | HeadlessGPURenderer) {
-        super(renderer)
+    constructor(renderer: GPURenderer) {
+        super()
 
         this.initFromObject({
             camera: new Camera(renderer.width, renderer.height, 60, 0.1, 1000),
@@ -26,8 +26,8 @@ export class GraphicPipeline extends RenderPipeline {
             blendMode: new AlphaBlendMode(),
             antiAliasing: true,
             indexBuffer: new IndexBuffer({ nbPoint: 0 }),
-            vertices: VertexAttribute.Vec4(),
-            curves: VertexAttribute.Vec3(),
+            vertices: new Vec4Buffer(),
+            curves: new Vec3Buffer(),
 
             shapeScale: new Vec2(400, 400),
             center: new Vec3(0, 0, 0),

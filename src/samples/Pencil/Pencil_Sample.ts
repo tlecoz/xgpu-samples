@@ -1,14 +1,14 @@
 import { GPURenderer } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
-import { Ribbon } from "./Ribbon";
+import { Pencil } from "./Pencil";
 
-export class Ribbon_Sample extends Sample {
+export class Pencil_Sample extends Sample {
 
     protected async start(renderer: GPURenderer): Promise<void> {
 
 
-        var ribbon = new Ribbon(renderer);
-        renderer.addPipeline(ribbon);
+        var pencil = new Pencil(renderer);
+        renderer.addPipeline(pencil);
 
 
     }

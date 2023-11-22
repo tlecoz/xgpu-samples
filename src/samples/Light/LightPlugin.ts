@@ -1,4 +1,4 @@
-import { BuiltIns, Matrix4x4, PipelinePlugin, RenderPipeline, Vec3, VertexAttribute } from "xgpu";
+import { BuiltIns, Matrix4x4, PipelinePlugin, RenderPipeline, Vec3, Vec3Buffer } from "xgpu";
 import { Light } from "./Light";
 
 export class LightPlugin extends PipelinePlugin {
@@ -10,16 +10,31 @@ export class LightPlugin extends PipelinePlugin {
     */
 
     constructor(target: RenderPipeline, required: {
-        position: VertexAttribute,
-        normal: VertexAttribute,
+        position: Vec3Buffer,
+        normal: Vec3Buffer,
         cameraMatrix: Matrix4x4,
         modelMatrix: Matrix4x4
     }) {
 
         super(target, required);
 
+        let screenW = 1;
+        let screenH = 1;
+        let light; Light;
+        if (target.renderer) {
+            screenW = target.renderer.width;
+            screenH = target.renderer.height;
+        } else {
+
+            target.addEventListener(RenderPipeline.ON_ADDED_TO_RENDERER, () => {
+                light.createProjectionMatrix(target.renderer.width, target.renderer.height)
+            }, true)
+        }
+        light = new Light(screenW, screenH)
+
+
         this.bindgroupResources = {
-            light: new Light(target.renderer.width, target.renderer.height),
+            light,
         }
 
 

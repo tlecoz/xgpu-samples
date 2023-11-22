@@ -1,5 +1,5 @@
 
-import { GPURenderer, RenderPipeline, VertexAttribute } from "xgpu";
+import { GPURenderer, RenderPipeline, Vec2Buffer } from "xgpu";
 import { Sample } from "./Sample";
 
 
@@ -7,9 +7,9 @@ export class HelloTriangle_Sample extends Sample {
 
     protected async start(renderer: GPURenderer): Promise<void> {
 
-        const pipeline: RenderPipeline = new RenderPipeline(renderer);
+        const pipeline: RenderPipeline = new RenderPipeline();
         pipeline.initFromObject({
-            position: VertexAttribute.Vec2([
+            position: new Vec2Buffer([
                 [0.0, 0.5],
                 [-0.5, -0.5],
                 [0.5, -0.5]

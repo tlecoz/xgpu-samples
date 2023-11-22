@@ -15,7 +15,7 @@ export class Light extends UniformBuffer {
             projection: new Matrix4x4(new Float32Array(16)),
             ambient: new Vec3(0.2, 0.2, 0.2),
             color: new Vec3(1.0, 1.0, 1.0),
-            projectionScale: new Float(1)
+            projectionScale: new Float(1.0)
         }, { useLocalVariable: false })
 
 
@@ -54,7 +54,7 @@ export class Light extends UniformBuffer {
     }
 
 
-    protected createProjectionMatrix(screenW: number, screenH: number) {
+    public createProjectionMatrix(screenW: number, screenH: number) {
 
         const _w = screenW * this.items.projectionScale;
         const _h = screenH * this.items.projectionScale;

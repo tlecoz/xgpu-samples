@@ -14,6 +14,7 @@ export class Documentation extends UIElement {
             flexDirection: "column",
             position: "relative",
             fontFamily: "Arial",
+            boxSizing: "borderBox",
             width: appConfig.APP_WIDTH,
             minHeight: (window.innerHeight - appConfig.HEADER_HEIGHT - appConfig.FOOTER_HEIGHT) + "px",
         })
