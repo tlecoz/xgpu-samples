@@ -78,9 +78,9 @@
             ]
         },
         {
-            "name": "MouseToy2",
+            "name": "RibbonMouseToy",
             "files": [
-                "MouseToy2_Sample.ts"
+                "RibbonMouseToy_Sample.ts"
             ]
         },
         {
@@ -161,6 +161,12 @@
             "files": [
                 "DebuggingVertexShader_Sample.ts",
                 "Panel.ts"
+            ]
+        },
+        {
+            "name": "RenderToTexture",
+            "files": [
+                "RenderToTexture_Sample.ts"
             ]
         }
     ]

@@ -2,13 +2,13 @@ import { AlphaBlendMode, BuiltIns, Float, GPURenderer, UniformBuffer } from "xgp
 import { Sample } from "../HelloTriangle/Sample";
 import { MouseToy } from "../MouseToy/MouseToy";
 
-export class MouseToy2 extends MouseToy {
+export class RibbonMouseToy extends MouseToy {
 
     protected time: Float;
     protected startTime: number = new Date().getTime();
 
-    constructor() {
-        super();
+    constructor(options?: any) {
+        super(options);
 
         this.vertexShader.addOutputVariable("dist", BuiltIns.vertexOutputs.Float);
 
@@ -19,18 +19,15 @@ export class MouseToy2 extends MouseToy {
         const createLocalVariable: boolean = true;
         this.time = uniformBuffer.add("time", new Float(0.0), createLocalVariable) as Float;
         this.blendMode = new AlphaBlendMode();
-        this.grid.x = this.grid.y = 750;
-        /*
-        750 * 750 = 562 500 quads !!! :)
-        Definitly not the most efficient way to do it 😅 
-        Anyway, this sample show how to customize a pipeline when RenderPipeline.initFromObject has already been called
-        */
-        this.grid.z = 0.005;
+        this.grid.x = this.grid.y = 3236;
+        this.instanceCount = 1618;
+
+        this.grid.z = 0.001;
 
 
         this.vertexShader.main.createNode(`
             let dist = -0.5+ distance(output.position.xy,vec2(mouse.x,mouse.y));
-            output.position = vec4( output.position.xy * dist*5.236 , 0.0 , 1.0);
+            output.position = vec4( output.position.xy * dist*7.236 , 0.0 , 1.0);
             output.dist = dist;
             var newPos = vec2(
                  cos(time+a)  *cos(output.position.x - a),
@@ -43,7 +40,7 @@ export class MouseToy2 extends MouseToy {
 
         this.vertexShader.main.executeSubNodeAfterCode = true; // true by default
 
-        this.fragmentShader.main.text = "output.color = vec4(dist,abs(sin(time)),1.0,0.015);"
+        this.fragmentShader.main.text = "output.color = vec4(dist,abs(sin(time)),1.0,0.05);"
     }
 
     public update(): void {
@@ -54,10 +51,10 @@ export class MouseToy2 extends MouseToy {
 }
 
 
-export class MouseToy2_Sample extends Sample {
+export class RibbonMouseToy_Sample extends Sample {
 
     protected async start(renderer: GPURenderer): Promise<void> {
-        renderer.addPipeline(new MouseToy2());
+        renderer.addPipeline(new RibbonMouseToy());
     }
 
 }

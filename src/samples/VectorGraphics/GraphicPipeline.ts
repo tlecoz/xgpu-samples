@@ -34,6 +34,7 @@ export class GraphicPipeline extends RenderPipeline {
             rotation: new Float(0),
             shapeRotation: new Float(0),
             widthRatio: new Float(1.0),
+            depthTest: true,
 
             curve: BuiltIns.vertexOutputs.Vec3,
             pos: BuiltIns.vertexOutputs.Vec2,

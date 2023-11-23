@@ -16,7 +16,7 @@ export class Sample {
     public params: { name: string, min?: number, max?: number, object: PrimitiveType, id?: number, round?: boolean }[] = [];
     protected destroyed: boolean = false;
     protected renderer: GPURenderer;
-
+    protected canvas: HTMLCanvasElement;
     protected _started: boolean = false;
 
 
@@ -26,7 +26,7 @@ export class Sample {
         if (this._started) return;
         this._started = true;
 
-
+        this.canvas = canvas;
 
         if (Sample.current) Sample.current.destroy();
         XGPU.destroy();
@@ -38,8 +38,7 @@ export class Sample {
             if (Sample.canvas2d) Sample.canvas2d.style.display = "none";
             renderer = this.renderer = new GPURenderer()
             renderer.initCanvas(canvas, "premultiplied").then(async () => {
-                //this.medias = await this.loadMedias();
-                if (!renderer.canvas) return;
+
                 this.start(renderer);
                 if (onReady) onReady(canvas);
             })
@@ -87,8 +86,9 @@ export class Sample {
         animate();
     }
 
-    protected async start(_renderer: GPURenderer): Promise<void> {
-
+    protected async start(renderer: GPURenderer): Promise<void> {
+        //@ts-ignore 
+        renderer;
 
     }
 

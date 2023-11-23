@@ -53,6 +53,7 @@ export class MouseToy extends RenderPipeline {
         })
 
         this.addEventListener(RenderPipeline.ON_ADDED_TO_RENDERER, () => {
+
             (this.resources.mouse as MouseControler).initCanvas(this.renderer.canvas)
         })
     }

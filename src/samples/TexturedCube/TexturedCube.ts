@@ -1,10 +1,10 @@
-import { TextureSampler, ImageTexture, BuiltIns, VertexAttribute } from "xgpu";
+import { TextureSampler, ImageTexture, BuiltIns, VertexAttribute, RenderPassTexture } from "xgpu";
 import { Cube } from "../ColorCube/Cube";
 import { cubeUVOffset } from "../../meshes/CubeMesh";
 
 export class TexturedCube extends Cube {
 
-    constructor(image: ImageBitmap | GPUTexture, options?: any) {
+    constructor(image: ImageBitmap | GPUTexture | RenderPassTexture, options?: any) {
         super({
             imageSampler: new TextureSampler(),
             image: new ImageTexture({ source: image }),

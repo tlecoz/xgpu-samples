@@ -9,7 +9,7 @@ export class Dragon extends RenderPipeline {
     public position: Vec3Buffer;
     public normal: Vec3Buffer;
 
-    constructor() {
+    constructor(options?: any) {
         super();
         this.model = new Matrix4x4();
         this.camera = new Camera(1, 1, 60, 0.1, 100000);
@@ -23,7 +23,8 @@ export class Dragon extends RenderPipeline {
             cameraViewProjMatrix: this.camera,
             modelMatrix: this.model,
             vertexShader: `output.position = cameraViewProjMatrix  *  modelMatrix * vec4(position, 1.0);`,
-            fragmentShader: `output.color = vec4(1.0);`
+            fragmentShader: `output.color = vec4(1.0);`,
+            ...options,
         });
 
 

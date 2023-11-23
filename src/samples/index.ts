@@ -1,3 +1,4 @@
+export { RenderToTexture_Sample } from "./RenderToTexture/RenderToTexture_Sample";
 
 
 
@@ -9,7 +10,7 @@ export { FractalCube_Sample } from "./FractalCube/FractalCube_Sample";
 export { InstanceCube_Sample } from "./InstanceCube/InstanceCube_Sample";
 export { CubeMap_Sample } from "./CubeMap/CubeMap_Sample";
 export { MouseToy_Sample } from "./MouseToy/MouseToy_Sample";
-export { MouseToy2_Sample } from "./MouseToy2/MouseToy2_Sample";
+export { RibbonMouseToy_Sample } from "./RibbonMouseToy/RibbonMouseToy_Sample";
 export { Light_Sample } from "./Light/Light_Sample";
 export { Shadow_Sample } from "./Shadow/Shadow_Sample";
 export { SoundSpectrum_Sample } from "./SoundSpectrum/SoundSpectrum_Sample";

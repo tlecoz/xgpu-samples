@@ -11,6 +11,7 @@ export class MouseControler extends Vec4 {
     }
 
     public initCanvas(canvas: HTMLCanvasElement | any) {
+        if (!canvas) return;
         document.body.addEventListener("mousemove", (e) => {
             const r = canvas.getBoundingClientRect();
             const px = e.clientX - r.x;
