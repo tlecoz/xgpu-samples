@@ -30,6 +30,7 @@ export class ParamUI extends UIElement {
         if (item.min) min = item.min;
         if (item.max) max = item.max;
 
+        console.log(item);
 
         let progress: string = ((val - min) / (max - min) * 100).toFixed(2) + "px"
         let mouseDown: boolean = false;

@@ -11,7 +11,6 @@ export class FractalCube_Sample extends Sample {
         this.started = true;
 
         const cube = new TexturedCube(null)
-        //cube.resources.image.source = cube.renderPass;
 
         cube.fragmentShader.main.executeSubNodeAfterCode = true; //<= default = true;
         cube.fragmentShader.main.createNode(`output.color = vec4( (fragPosition.rgb -output.color.rgb)  , 1.0);`)

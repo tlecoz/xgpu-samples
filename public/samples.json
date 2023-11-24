@@ -168,6 +168,12 @@
             "files": [
                 "RenderToTexture_Sample.ts"
             ]
+        },
+        {
+            "name": "ComputeBoids",
+            "files": [
+                "ComputeBoids_Sample.ts"
+            ]
         }
     ]
 }

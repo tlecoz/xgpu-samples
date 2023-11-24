@@ -1,6 +1,3 @@
-export { RenderToTexture_Sample } from "./RenderToTexture/RenderToTexture_Sample";
-
-
 
 export { HelloTriangle_Sample } from "./HelloTriangle/HelloTriangle_Sample";
 export { ColorCube_Sample } from "./ColorCube/ColorCube_Sample";
@@ -25,5 +22,7 @@ export { TestAlignment_Sample } from "./TestAlignment/TestAlignment_Sample";
 export { PolygonInstances_Sample } from "./PolygonInstances/PolygonInstances_Sample";
 export { VectorGraphics_Sample } from "./VectorGraphics/VectorGraphics_Sample";
 export { DebuggingVertexShader_Sample } from "./DebuggingVertexShader/DebuggingVertexShader_Sample";
+export { RenderToTexture_Sample } from "./RenderToTexture/RenderToTexture_Sample";
+export { ComputeBoids_Sample } from "./ComputeBoids/ComputeBoids_Sample";
 
 export default {}
