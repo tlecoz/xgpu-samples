@@ -3,6 +3,7 @@
 header {
     display: flex;
     background-color: #181818;
+    width: auto;
 
 
 
@@ -34,12 +35,12 @@ header {
 
 @media screen and (max-width:500px) {
     header {
-        justify-content: center;
+
         align-items: center;
         position: relative;
         z-index: 99999;
         position: fixed;
-
+        width: 100%;
 
         .xgpuButton {
             font-size: 20px;
@@ -50,6 +51,7 @@ header {
             border: none;
 
             display: flex;
+
             margin-left: 50px;
             margin-right: 10px;
             width: 100%;

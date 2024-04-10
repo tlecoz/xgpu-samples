@@ -38,7 +38,7 @@ export class Video3D_Sample extends Sample {
     protected async start(renderer: GPURenderer): Promise<void> {
 
         const nbDepthLevel: Float = new Float(255);
-        const smoothFrame: Float = new Float(0.5);
+        const smoothFrame: Float = new Float(0.1);
         const depthMax: Float = new Float(127);
 
         this.params = [
@@ -58,15 +58,18 @@ export class Video3D_Sample extends Sample {
         }
 
         this.video = await getVideo("../../assets/video.webm")
+        //this.video = await getVideo("../../assets/fire.mp4")
 
-
+        const scale = 0.5;
+        const videoW = this.video.videoWidth * scale;
+        const videoH = this.video.videoHeight * scale;
 
         const textureSampler: TextureSampler = new TextureSampler();
         const videoQuad = new TexturedQuad(this.video, textureSampler);
 
         //-----
 
-        const nb = Math.floor(this.video.videoWidth * this.video.videoHeight);
+        const nb = Math.floor(videoW * videoH);
         const buffer: VertexBufferIO = new VertexBufferIO({ pixel: new Vec4Buffer() })
         buffer.datas = new Float32Array(nb * 4);
 
@@ -74,9 +77,11 @@ export class Video3D_Sample extends Sample {
         mouse.initCanvas(renderer.canvas);
         const image: ImageTexture = new ImageTexture({ source: videoQuad.renderPass });
 
+        console.log("video size = ", this.video.videoWidth, this.video.videoHeight)
 
 
-        const screen = new Vec4(this.video.videoWidth, this.video.videoHeight);
+
+        const screen = new Vec4(videoW, videoH);
         const computePipeline = new ComputePipeline();
         computePipeline.useRenderPipeline = true;
         computePipeline.initFromObject({
@@ -155,19 +160,23 @@ export class Video3D_Sample extends Sample {
         renderer.addPipeline(renderPipeline);
 
 
-        viewMatrix.scaleY = this.video.videoHeight / this.video.videoWidth
+        viewMatrix.scaleY = videoH / videoW
         viewMatrix.scaleX = -1 / (renderer.width / renderer.height)
         viewMatrix.scaleZ = -1;
 
         renderPipeline.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
 
-            const smooth = 0.15;
+            const smooth = 0.05;
             modelMatrix.rotationY -= (modelMatrix.rotationY - (mouse.x * Math.PI * 0.35)) * smooth;
             modelMatrix.rotationX -= (modelMatrix.rotationX - (mouse.y * Math.PI * 0.35)) * smooth;
-            modelMatrix.x = -this.video.videoWidth * 0.5;
+            modelMatrix.rotationX += 0.001;
+            modelMatrix.rotationY += 0.002;
+
+
+            modelMatrix.x = -videoW * 0.5;
             modelMatrix.y = -screen.y * 0.5;
             modelMatrix.z = depthMax.x;
-            projection.z = -1500;
+            projection.z = -550;
 
             //textureRenderer.update();
             computePipeline.nextFrame();

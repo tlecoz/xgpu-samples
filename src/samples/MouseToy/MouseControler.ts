@@ -12,6 +12,38 @@ export class MouseControler extends Vec4 {
 
     public initCanvas(canvas: HTMLCanvasElement | any) {
         if (!canvas) return;
+
+
+        const div = canvas.parentNode;
+        let lastDist = -1;
+        div.addEventListener("touchmove", (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const r = div.getBoundingClientRect();
+            const px = touch.clientX - r.x;
+            const py = touch.clientY - r.y;
+
+            this.x = -1.0 + (px / r.width) * 2.0;
+            this.y = 1.0 - (py / r.height) * 2.0;
+
+            if (e.touches.length > 1) {
+                const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                if (lastDist != -1) {
+                    if (dist > lastDist) this.w = 1; // Zoom avant
+                    else if (dist < lastDist) this.w = -1; // Zoom arrière
+                }
+                lastDist = dist;
+            }
+        });
+
+        // Ajouter des écouteurs d'événements pour le toucher (appui)
+        div.addEventListener("touchstart", () => { this.z = 1; });
+
+        // Ajouter des écouteurs d'événements pour le relâchement du toucher
+        div.addEventListener("touchend", () => { this.z = 0; });
+
+
+
         document.body.addEventListener("mousemove", (e) => {
             const r = canvas.getBoundingClientRect();
             const px = e.clientX - r.x;
