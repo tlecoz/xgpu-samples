@@ -1,4 +1,4 @@
-import { BuiltIns, ComputePipeline, Float, FloatBuffer, GPURenderer, PrimitiveFloatUniform, RenderPipeline, UVec2, Uint, UintBuffer, Vec2, VertexBufferIO, XGPU } from "xgpu";
+import { BuiltIns, ComputePipeline, GPURenderer, PrimitiveFloatUniform, RenderPipeline, UVec2, UintBuffer, VertexBufferIO } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 
 export class GameOfLife_Sample extends Sample {
@@ -146,7 +146,7 @@ export class GameOfLife_Sample extends Sample {
         });
 
 
-
+        /*
         let nb = 0;
 
         cells.onOutputData = (data) => {
@@ -158,7 +158,7 @@ export class GameOfLife_Sample extends Sample {
             }
 
 
-        }
+        }*/
 
 
 

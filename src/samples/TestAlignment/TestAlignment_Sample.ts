@@ -1,4 +1,4 @@
-import { ImageTextureArray, BuiltIns, Float, GPURenderer, IVec4, IVec4Array, Matrix3x3, Matrix4x4, RenderPipeline, TextureSampler, UniformGroup, UniformGroupArray, Vec2, Vec3, Vec4 } from "xgpu";
+import { BuiltIns, Float, GPURenderer, Matrix3x3, Matrix4x4, RenderPipeline, UniformGroup, Vec2, Vec3, Vec4 } from "xgpu";
 import { Sample } from "../HelloTriangle/Sample";
 
 
@@ -49,7 +49,7 @@ export class TestAlignment_Sample extends Sample {
 
 
     }
-
+    /*
     // @ts-ignore
     private test03(renderer: GPURenderer) {
 
@@ -92,7 +92,7 @@ export class TestAlignment_Sample extends Sample {
 
         renderer.addPipeline(pipeline);
 
-    }
+    }*/
 
 
     private test02(renderer: GPURenderer) {
@@ -106,7 +106,7 @@ export class TestAlignment_Sample extends Sample {
 
         const o = {};
         //let nb = 8000;
-        let nb = 20;
+        const nb = 20;
         let test = "";
         for (let i = 0; i < nb; i++) {
             const n = Math.floor((Math.random() * 100) / (100 / classes.length))
@@ -117,7 +117,7 @@ export class TestAlignment_Sample extends Sample {
 
         o[test] = new Vec3(1.0, 0.0, 1.0);
 
-        var myGroup = new UniformGroup(o);
+        const myGroup = new UniformGroup(o);
 
 
         const pipeline = new RenderPipeline();
@@ -159,7 +159,7 @@ export class TestAlignment_Sample extends Sample {
         renderer.addPipeline(pipeline);
 
     }
-
+    /*
     // @ts-ignore
     private async test01(renderer: GPURenderer) {
 
@@ -186,8 +186,8 @@ export class TestAlignment_Sample extends Sample {
             const blob = await img.blob();
             return await createImageBitmap(blob);
         }
-        const bmp1: ImageBitmap = await getImageBitmap("../../../public/assets/leaf.png");
-        const bmp2: ImageBitmap = await getImageBitmap("../../../public/assets/leaf2.png");
+        const bmp1: ImageBitmap = await getImageBitmap("./assets/leaf.png");
+        const bmp2: ImageBitmap = await getImageBitmap("./assets/leaf2.png");
 
         const groupArray = new UniformGroupArray([
             myGroup,
@@ -247,5 +247,5 @@ export class TestAlignment_Sample extends Sample {
         })
 
         renderer.addPipeline(pipeline);
-    }
+    }*/
 }

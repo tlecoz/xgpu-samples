@@ -19,7 +19,7 @@ export class ComputeTexture_Sample extends Sample {
             const blob = await img.blob();
             return await createImageBitmap(blob);
         }
-        const bitmap: ImageBitmap = await getImageBitmap("../../../public/assets/leaf.png");
+        const bitmap: ImageBitmap = await getImageBitmap("./assets/leaf.png");
 
         const time: Float = this.time = new Float(0);
         const image: ImageTextureIO = new ImageTextureIO({ source: bitmap });
@@ -73,7 +73,7 @@ export class ComputeTexture_Sample extends Sample {
         renderer.addPipeline(renderPipeline);
 
 
-        let now = new Date().getTime();
+        const now = new Date().getTime();
         renderPipeline.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             time.x = (new Date().getTime() - now) / 1000;
             computePipeline.nextFrame();

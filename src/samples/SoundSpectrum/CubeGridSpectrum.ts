@@ -9,7 +9,7 @@ export class CubeGridSpectrum extends Cube {
 
         const gridSize: number = 32;
         const spectrumBuffer = new SoundSpectrumBuffer("amplitude", gridSize * gridSize);
-        spectrumBuffer.init("../../../../assets/audio.mp3", () => {
+        spectrumBuffer.init("./assets/audio.mp3", () => {
             spectrumBuffer.volume = 1.;
             spectrumBuffer.play();
         })

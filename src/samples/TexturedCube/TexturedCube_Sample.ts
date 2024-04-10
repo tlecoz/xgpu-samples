@@ -15,7 +15,7 @@ export class TexturedCube_Sample extends Sample {
             const blob = await img.blob();
             return await createImageBitmap(blob);
         }
-        const image: ImageBitmap = await getImageBitmap("../../../public/assets/leaf.png");
+        const image: ImageBitmap = await getImageBitmap("./assets/leaf.png");
 
 
         const cube = new TexturedCube(image);
