@@ -1,0 +1,50 @@
+@import "./config";
+
+.sampleMenu {
+    display: flex;
+    flex-direction: column;
+
+    width: $sampleMenuWidth;
+    height: $canvasSize;
+    background-color: #444444;
+    color: #ffffff;
+    user-select: none;
+    cursor: pointer;
+    list-style: none;
+    padding-top: 15px;
+
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    ul {
+        padding: 5px;
+        margin-left: 15px;
+        margin-right: 15px;
+
+        .sel {
+            color: aqua;
+        }
+
+        :first-child {
+
+            height: 20px;
+        }
+
+
+
+    }
+}
+
+@media screen and (max-width:768px) {
+    .sampleMenu {
+        width: 240px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .sampleMenu {
+        display: none;
+    }
+}

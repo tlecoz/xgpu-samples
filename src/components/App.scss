@@ -1,0 +1,83 @@
+@import "_config.scss";
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+/* Fichier de réinitialisation CSS */
+
+/* Réinitialiser les marges et les rembourrages */
+
+
+/* Réinitialiser les styles des éléments de bloc */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+blockquote,
+ul,
+ol,
+li,
+dl,
+dd,
+dt,
+figure,
+figcaption,
+form,
+fieldset,
+legend,
+textarea,
+p,
+blockquote,
+th,
+td,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+    margin: 0;
+    padding: 0;
+}
+
+/* Réinitialiser la taille de la police et le style de la police */
+body,
+input,
+textarea,
+select,
+button {
+    font-size: 100%;
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+/* Ajouter d'autres réinitialisations selon vos besoins */
+
+
+body {
+    font-family: sans-serif;
+    background-color: #F2F2F2
+}
+
+.mainContainer {
+    display: block;
+    //flex-direction: column;
+    min-height: 100vh;
+    //justify-content: center;
+    width: 100vw;
+    max-width: $appWidth;
+}

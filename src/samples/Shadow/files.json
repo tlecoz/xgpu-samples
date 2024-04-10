@@ -1,0 +1,7 @@
+{
+    "files": [
+        "Shadow_Sample.ts",
+        "LightShadowPlugin.ts",
+        "ShadowPipeline.ts"
+    ]
+}

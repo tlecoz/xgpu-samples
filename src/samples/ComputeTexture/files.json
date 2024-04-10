@@ -1,0 +1,6 @@
+{
+    "files": [
+        "ComputeTexture_Sample.ts",
+        "TexturedQuad.ts"
+    ]
+}

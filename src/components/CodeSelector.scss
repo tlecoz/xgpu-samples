@@ -1,0 +1,38 @@
+.codeSelector {
+    background-color: #333333;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4px;
+
+    .codeFile {
+        user-select: none;
+        cursor: pointer;
+        display: flex;
+        border: 1px solid white;
+        color: white;
+        padding: 10px;
+        margin: 6px;
+
+    }
+}
+
+
+@media screen and (max-width:480px) {
+
+    .codeSelector {
+
+        padding: 4px;
+
+        .codeFile {
+            font-size: 0.9em;
+            user-select: none;
+            cursor: pointer;
+            display: flex;
+            border: 1px solid white;
+            color: white;
+            padding: 8px;
+            margin: 4px;
+
+        }
+    }
+}

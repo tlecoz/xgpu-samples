@@ -1,0 +1,173 @@
+{
+    "basePath": "/src/samples/",
+    "samples": [
+        {
+            "name": "HelloTriangle",
+            "files": [
+                "HelloTriangle_Sample.ts",
+                "Sample.ts"
+            ]
+        },
+        {
+            "name": "IndexBuffer",
+            "files": [
+                "IndexBuffer_Sample.ts"
+            ]
+        },
+        {
+            "name": "ColorCube",
+            "files": [
+                "ColorCube_Sample.ts",
+                "Cube.ts",
+                "Camera.ts"
+            ]
+        },
+        {
+            "name": "TexturedCube",
+            "files": [
+                "TexturedCube_Sample.ts",
+                "TexturedCube.ts"
+            ]
+        },
+        {
+            "name": "VideoCube",
+            "files": [
+                "VideoCube_Sample.ts",
+                "VideoCube.ts"
+            ]
+        },
+        {
+            "name": "FractalCube",
+            "files": [
+                "FractalCube_Sample.ts"
+            ]
+        },
+        {
+            "name": "CubeMap",
+            "files": [
+                "CubeMap_Sample.ts",
+                "CubeMap.ts"
+            ]
+        },
+        {
+            "name": "TwoCubes",
+            "files": [
+                "TwoCubes_Sample.ts"
+            ]
+        },
+        {
+            "name": "InstanceCube",
+            "files": [
+                "InstanceCube_Sample.ts",
+                "ModelViewMatrix.ts"
+            ]
+        },
+        {
+            "name": "TonsOfCubes",
+            "files": [
+                "TonsOfCubes_Sample.ts",
+                "CubeGrid.ts"
+            ]
+        },
+        {
+            "name": "MouseToy",
+            "files": [
+                "MouseToy_Sample.ts",
+                "MouseToy.ts",
+                "MouseControler.ts"
+            ]
+        },
+        {
+            "name": "RibbonMouseToy",
+            "files": [
+                "RibbonMouseToy_Sample.ts"
+            ]
+        },
+        {
+            "name": "Light",
+            "files": [
+                "Light_Sample.ts",
+                "Dragon.ts",
+                "Light.ts",
+                "LightPlugin.ts"
+            ]
+        },
+        {
+            "name": "Shadow",
+            "files": [
+                "Shadow_Sample.ts",
+                "LightShadowPlugin.ts",
+                "ShadowPipeline.ts"
+            ]
+        },
+        {
+            "name": "SoundSpectrum",
+            "files": [
+                "SoundSpectrum_Sample.ts",
+                "CubeGridSpectrum.ts",
+                "SoundSpectrumBuffer.ts",
+                "SoundSpectrum.ts"
+            ]
+        },
+        {
+            "name": "ComputeShaderCanvas2D",
+            "files": [
+                "ComputeShaderCanvas2D_Sample.ts"
+            ]
+        },
+        {
+            "name": "ComputeTexture",
+            "files": [
+                "ComputeTexture_Sample.ts",
+                "TexturedQuad.ts"
+            ]
+        },
+        {
+            "name": "Video3D",
+            "files": [
+                "Video3D_Sample.ts"
+            ]
+        },
+        {
+            "name": "Pencil",
+            "files": [
+                "Pencil_Sample.ts",
+                "Pencil.ts"
+            ]
+        },
+        {
+            "name": "PolygonInstances",
+            "files": [
+                "PolygonInstances_Sample.ts"
+            ]
+        },
+        {
+            "name": "VectorGraphics",
+            "files": [
+                "VectorGraphics_Sample.ts",
+                "GraphicPipeline.ts",
+                "Graphics.ts",
+                "EarCutting.ts"
+            ]
+        },
+        {
+            "name": "DebuggingVertexShader",
+            "files": [
+                "DebuggingVertexShader_Sample.ts",
+                "Panel.ts"
+            ]
+        },
+        {
+            "name": "RenderToTexture",
+            "files": [
+                "RenderToTexture_Sample.ts"
+            ]
+        },
+        {
+            "name": "ComputeBoids",
+            "files": [
+                "ComputeBoids_Sample.ts"
+            ]
+        }
+    ]
+}

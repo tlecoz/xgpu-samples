@@ -1,0 +1,34 @@
+@import "./_config.scss";
+
+.sampleCanvas {
+    width: auto;
+    //height: $canvasSize;
+    background-color: black;
+    color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    canvas {
+        display: flex;
+        //margin-left: calc((($appWidth - $sampleMenuWidth) - $canvasSize) * 0.5);
+        width: $canvasSize;
+        height: $canvasSize;
+        resize: none;
+    }
+
+}
+
+@media screen and (max-width:480px) {
+    .sampleCanvas {
+        padding-top: 31px;
+
+        canvas {
+            width: 480px;
+            height: 480px;
+        }
+    }
+}
