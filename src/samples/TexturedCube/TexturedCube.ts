@@ -1,4 +1,4 @@
-import { TextureSampler, ImageTexture, BuiltIns, RenderPassTexture, /*Vec2Buffer,*/ VertexAttribute } from "xgpu";
+import { TextureSampler, ImageTexture, BuiltIns, RenderPassTexture, Vec2Buffer } from "xgpu";
 import { Cube } from "../ColorCube/Cube";
 import { cubeUVOffset } from "../../meshes/CubeMesh";
 
@@ -10,8 +10,8 @@ export class TexturedCube extends Cube {
             imageSampler: new TextureSampler(),
             image: new ImageTexture({ source: image }),
             fragUV: BuiltIns.vertexOutputs.Vec2,
-            //uv: new Vec2Buffer(cubeUVOffset),
-            uv: VertexAttribute.Vec2(cubeUVOffset),
+            uv: new Vec2Buffer(cubeUVOffset),
+            //uv: VertexAttribute.Vec2(cubeUVOffset),
             fragmentShader: `output.color = textureSample(image, imageSampler, fragUV );`,
             ...options
         })

@@ -168,6 +168,12 @@
             "files": [
                 "ComputeBoids_Sample.ts"
             ]
+        },
+        {
+            "name": "GameOfLife",
+            "files": [
+                "GameOfLife_Sample.ts"
+            ]
         }
     ]
 }
