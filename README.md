@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# XGPU Examples
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the XGPU examples repository! This repository contains a variety of educational examples showcasing how to use XGPU, a library based on WebGPU, to achieve various graphical effects and demonstrations.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The examples cover a wide range of topics and concepts, aiming to provide practical guidance on utilizing XGPU effectively. Many of these examples are inspired by the official "WebGPU samples" and offer insights into integrating different features and techniques within XGPU.
 
-## Expanding the ESLint configuration
+## Examples
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Here's a brief overview of the examples included:
 
-- Configure the top-level `parserOptions` property like this:
+- **HelloTriangle**: A basic example demonstrating how to render a colored triangle using XGPU.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **ColorCube**: Illustrates rendering a colored cube with basic camera controls.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **TexturedCube**: Shows how to render a textured cube using XGPU.
+
+- **ComputeShaderCanvas2D**: Explores the usage of compute shaders outside of GPU-rendering.
+
+- **VideoCube**: Demonstrates rendering video onto a 3D cube.
+
+- **Shadow**: Explores shadow rendering techniques using XGPU.
+
+- **SoundSpectrum**: Illustrates sound visualization with XGPU.
+
+- **GameOfLife**: Implements Conway's Game of Life simulation using XGPU.
+
+These examples serve as educational tools to help developers understand various aspects of XGPU.
+
+## Contributing
+
+Contributions to this repository are welcome! Feel free to submit pull requests with new examples or improvements to existing ones.
+
+---
+
+Feel free to explore the examples and experiment with different concepts in XGPU!
