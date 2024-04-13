@@ -1,6 +1,7 @@
-# XGPU Examples
+# XGPU Samples
 
-Welcome to the XGPU examples repository! This repository contains a variety of educational examples showcasing how to use XGPU, a library based on WebGPU, to achieve various graphical effects and demonstrations.
+Welcome to the XGPU examples repository! This repository contains a variety of educational examples showcasing how to use [XGPU](https://github.com/tlecoz/XGPU), a library based on WebGPU, to achieve various graphical effects and demonstrations.
+
 
 
 # DEMOS 
