@@ -28,6 +28,12 @@ Here's a brief overview of the examples included:
 
 These examples serve as educational tools to help developers understand various aspects of XGPU.
 
+# DEMOS 
+
+[![image of the samples-page](https://raw.githubusercontent.com/tlecoz/XGPU/main/public/samples.jpg)](https://xgpu-samples.netlify.app/samples/TonsOfCubes)
+
+check the [samples-page](https://xgpu-samples.netlify.app/samples/TonsOfCubes)
+
 ## Contributing
 
 Contributions to this repository are welcome! Feel free to submit pull requests with new examples or improvements to existing ones.
