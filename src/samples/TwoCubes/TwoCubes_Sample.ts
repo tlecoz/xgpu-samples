@@ -21,12 +21,14 @@ export class TwoCubes_Sample extends Sample {
             trans
         ], nbCube)
 
-        const now = new Date().getTime();
-        cube.addEventListener(RenderPipeline.ON_DRAW, (pipeline: RenderPipeline, pipelineId: number) => {
-            //@ts-ignore
-            pipeline;
+        console.log("instances = ",instances)
 
-            let time = (new Date().getTime() - now) / 1000;
+        const now = new Date().getTime();
+        cube.addEventListener(RenderPipeline.ON_DRAW, (pipelineId: number) => {
+            
+            console.log("pipelineId = ",pipelineId)
+
+            const time = (new Date().getTime() - now) / 1000;
             const { transform } = instances[pipelineId];
 
             //the word "transform" here is the name used to store this ressource 

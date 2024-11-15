@@ -25,9 +25,8 @@ export class ComputeBoids_Sample extends Sample {
             velocity: new Vec2Buffer()
         })
 
-        particles.createVertexInstances(nbParticles, (instanceId: number) => {
-            //@ts-ignore
-            instanceId;
+        particles.createVertexInstances(nbParticles, (/*instanceId: number*/) => {
+          
 
             return {
                 position: [2 * (Math.random() - 0.5), 2 * (Math.random() - 0.5)],

@@ -78,7 +78,7 @@ export class DebuggingVertexShader_Sample extends Sample {
             matrixArrays[4].scaleX = Math.sin(new Date().getTime() * 0.001) * 150;
         })
 
-        pipeline.addEventListener(RenderPipeline.ON_LOG, (pipeline: RenderPipeline, data: any) => {
+        pipeline.addEventListener(RenderPipeline.ON_LOG, ( data: any) => {
             //@ts-ignore
             pipeline;
 
@@ -203,6 +203,7 @@ export class DebuggingVertexShader_Sample extends Sample {
         }
 
         const showLogs = (o) => {
+            if(!o) return
             let text: string = "";
             let results = o.results;
             let resultLen: number = results.length

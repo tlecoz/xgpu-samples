@@ -31,7 +31,8 @@ export class CubeMap_Sample extends Sample {
 
 
         let now = new Date().getTime();
-        renderer.addPipeline(new CubeMap(sides)).addEventListener(RenderPipeline.ON_DRAW_BEGIN, (pipeline: RenderPipeline) => {
+        const pipeline = new CubeMap(sides);
+        renderer.addPipeline(pipeline).addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             let time = (new Date().getTime() - now) / 1000;
             const { transform }: { transform: ModelViewMatrix } = pipeline.resources;
             transform.scaleX = transform.scaleY = transform.scaleZ = 10000 * Math.max(pipeline.renderer.width, pipeline.renderer.height) / 512;

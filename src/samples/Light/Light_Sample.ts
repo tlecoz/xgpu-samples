@@ -19,7 +19,7 @@ export class Light_Sample extends Sample {
         }).apply() as LightPlugin;
 
 
-        light.position.y = 1000;
+        //light.position.y = 1000;
 
 
         const now = new Date().getTime();
@@ -27,7 +27,7 @@ export class Light_Sample extends Sample {
         dragon.addEventListener(RenderPipeline.ON_DRAW_BEGIN, () => {
             const time = (new Date().getTime() - now) / 1000;
             dragon.camera.rotationY += 0.01;
-            light.position.z = (Math.sin(time) * 1000);
+            light.position.z = (Math.sin(time) * 100);
         })
 
         renderer.addPipeline(dragon);

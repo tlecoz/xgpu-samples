@@ -1,5 +1,8 @@
 @import "./config";
 
+
+
+
 .sampleMenu {
     display: flex;
     flex-direction: column;
@@ -12,7 +15,8 @@
     cursor: pointer;
     list-style: none;
     padding-top: 15px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    overflow-y: auto;
 
     a {
         color: #ffffff;
@@ -35,6 +39,23 @@
 
 
 
+    }
+
+    &::-webkit-scrollbar {
+        width: $scrollbar-width;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $scrollbar-background;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $scrollbar-thumb;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: $scrollbar-thumb-hover;
     }
 }
 

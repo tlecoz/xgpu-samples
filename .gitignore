@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+public/assets/keith.mp4
+public/assets/test.mp4
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

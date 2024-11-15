@@ -70,7 +70,25 @@ button {
 
 body {
     font-family: sans-serif;
-    background-color: #F2F2F2
+
+    background-color: #F2F2F2;
+
+    &::-webkit-scrollbar {
+        width: $scrollbar-width;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $scrollbar-background;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $scrollbar-thumb;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: $scrollbar-thumb-hover;
+    }
 }
 
 .mainContainer {
@@ -80,4 +98,5 @@ body {
     //justify-content: center;
     width: 100vw;
     max-width: $appWidth;
+
 }

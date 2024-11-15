@@ -1,5 +1,6 @@
 
 
+
 export { HelloTriangle_Sample } from "./HelloTriangle/HelloTriangle_Sample";
 export { ColorCube_Sample } from "./ColorCube/ColorCube_Sample";
 export { TexturedCube_Sample } from "./TexturedCube/TexturedCube_Sample";
@@ -26,4 +27,6 @@ export { DebuggingVertexShader_Sample } from "./DebuggingVertexShader/DebuggingV
 export { RenderToTexture_Sample } from "./RenderToTexture/RenderToTexture_Sample";
 export { ComputeBoids_Sample } from "./ComputeBoids/ComputeBoids_Sample";
 export { GameOfLife_Sample } from "./GameOfLife/GameOfLife_Sample";
+export { VideoTimeDiff_Sample } from "./VideoTimeDiff/VideoTimeDiff_Sample";
+export { ParticleLife_Sample } from "./ParticleLife/ParticleLife_Sample";
 export default {}
